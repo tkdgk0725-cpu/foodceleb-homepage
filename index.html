@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>푸드셀럽 | 푸드트럭 행사·케이터링 매칭 플랫폼</title>
+<meta name="description" content="기업 행사, 학교 축제, 웨딩, 촬영장 케이터링까지. 전국 검증된 푸드트럭을 한 번에 매칭해드립니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  --white:#fff;
+  --bg:#F8F9FA;
+  --ink:#1A1A2E;
+  --sub:#555;
+  --orange:#FF6B35;
+  --orange-dark:#E55A2B;
+  --blue:#2563EB;
+  --navy:#16213E;
+  --green:#10B981;
+  --line:#E5E7EB;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
+  --radius:16px;
+  --container:1140px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif; color:var(--ink); line-height:1.7; background:var(--white);}
+img{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+.container{max-width:var(--container); margin:0 auto; padding:0 24px;}
+.section{padding:100px 0;}
+.section-title{text-align:center; margin-bottom:56px;}
+.section-title .label{display:inline-block; background:rgba(255,107,53,0.1); color:var(--orange); font-weight:700; font-size:13px; padding:6px 16px; border-radius:999px; margin-bottom:14px; letter-spacing:1px;}
+.section-title h2{font-size:clamp(26px,4vw,38px); font-weight:900; line-height:1.35;}
+.section-title p{margin-top:14px; color:var(--sub); font-size:16px; max-width:560px; margin-left:auto; margin-right:auto;}
+
+/* Animations */
+.reveal{opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.visible{opacity:1; transform:translateY(0);}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:none; transition:all .2s ease;}
+.btn:hover{transform:translateY(-2px);}
+.btn-orange{background:var(--orange); color:#fff; box-shadow:0 8px 24px rgba(255,107,53,0.35);}
+.btn-orange:hover{background:var(--orange-dark);}
+.btn-white{background:#fff; color:var(--ink); box-shadow:var(--shadow);}
+.btn-outline{background:transparent; border:2px solid #fff; color:#fff;}
+.btn-outline:hover{background:#fff; color:var(--ink);}
+.btn-dark{background:var(--ink); color:#fff;}
+.btn-sm{padding:10px 22px; font-size:14px;}
+
+/* ===== NAV ===== */
+.nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.nav .container{display:flex; align-items:center; justify-content:space-between; height:72px;}
+.logo{font-weight:900; font-size:22px; color:var(--orange); display:flex; align-items:center; gap:8px;}
+.logo svg{width:30px; height:20px;}
+.nav-links{display:flex; gap:28px; font-weight:500; font-size:15px; color:var(--sub);}
+.nav-links a:hover{color:var(--orange);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.nav-phone{font-weight:700; font-size:15px; color:var(--ink);}
+.nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+.nav-toggle span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0;}
+@media(max-width:880px){
+  .nav-links{position:absolute; top:72px; left:0; right:0; background:#fff; flex-direction:column; gap:0; border-bottom:1px solid var(--line); max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .nav-links.open{max-height:400px;}
+  .nav-links a{padding:16px 24px; display:block; border-top:1px solid var(--line);}
+  .nav-toggle{display:block;}
+  .nav-phone{display:none;}
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative; overflow:hidden;
+  background:linear-gradient(160deg, rgba(26,26,46,0.82), rgba(22,33,62,0.75)),
+             url('images/event-crowd-trucks.jpg') center/cover;
+  color:#fff; padding:100px 0 80px; min-height:85vh; display:flex; align-items:center;
+}
+.hero-grid{display:grid; grid-template-columns:1fr; gap:60px; align-items:center; text-align:center;}
+.hero-left h1{font-size:clamp(32px,5.5vw,52px); font-weight:900; line-height:1.25; margin-bottom:20px;}
+.hero-left h1 .hl{color:var(--orange);}
+.hero-left p{font-size:17px; opacity:0.85; margin-bottom:36px; max-width:560px; margin-left:auto; margin-right:auto;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+.hero-stats{display:flex; gap:32px; margin-top:48px; justify-content:center;}
+.hero-stat{text-align:center;}
+.hero-stat .num{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,4vw,40px); color:var(--orange);}
+.hero-stat .txt{font-size:13px; opacity:0.7; margin-top:4px;}
+.hero-right{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.hero-right img{border-radius:var(--radius); box-shadow:var(--shadow-lg); aspect-ratio:4/3; object-fit:cover; width:100%;}
+.hero-right img:first-child{grid-row:span 2; aspect-ratio:3/4;}
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-stats{gap:20px;}
+  .hero{min-height:auto; padding:80px 0 60px;}
+}
+
+/* ===== SERVICES ===== */
+.services{background:var(--bg);}
+.svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.svc-card{background:#fff; border-radius:var(--radius); padding:36px 28px; box-shadow:var(--shadow); transition:transform .3s ease; text-align:center;}
+.svc-card:hover{transform:translateY(-6px);}
+.svc-icon{width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 20px;}
+.svc-card h3{font-size:20px; margin-bottom:10px;}
+.svc-card p{font-size:14.5px; color:var(--sub); margin-bottom:18px;}
+@media(max-width:880px){.svc-grid{grid-template-columns:1fr;}}
+
+/* ===== MENU CATEGORIES ===== */
+.menu-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+.menu-card{background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s ease; cursor:pointer;}
+.menu-card:hover{transform:translateY(-6px);}
+.menu-card-img{height:200px; overflow:hidden;}
+.menu-card-img img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.menu-card:hover .menu-card-img img{transform:scale(1.08);}
+.menu-card-body{padding:20px; text-align:center;}
+.menu-card-body h3{font-size:18px; margin-bottom:6px;}
+.menu-card-body p{font-size:13.5px; color:var(--sub);}
+@media(max-width:880px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.menu-grid{grid-template-columns:1fr;}}
+
+/* ===== EVENT TYPES ===== */
+.events{background:var(--navy); color:#fff;}
+.evt-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:18px;}
+.evt-card{text-align:center; padding:28px 14px; border-radius:var(--radius); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); transition:all .3s ease;}
+.evt-card:hover{background:rgba(255,255,255,0.12); transform:translateY(-4px);}
+.evt-card .ico{font-size:34px; margin-bottom:12px;}
+.evt-card .name{font-size:14px; font-weight:700;}
+.evt-card .desc{font-size:12px; opacity:0.6; margin-top:4px;}
+@media(max-width:880px){.evt-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.evt-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* ===== TRUCKS ===== */
+.truck-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.truck-hidden{display:none;}
+.truck-hidden.show{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.truck-toggle{display:flex; justify-content:center; margin-top:32px;}
+.truck-toggle .btn{gap:6px; font-size:15px;}
+.truck-card{background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s ease;}
+.truck-card:hover{transform:translateY(-6px);}
+.truck-card-img{height:220px; overflow:hidden; position:relative;}
+.truck-card-img img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.truck-card:hover .truck-card-img img{transform:scale(1.06);}
+.truck-badge{position:absolute; top:14px; left:14px; background:var(--orange); color:#fff; padding:5px 12px; border-radius:999px; font-size:12px; font-weight:700;}
+.truck-card-body{padding:22px;}
+.truck-card-body h3{font-size:19px; margin-bottom:8px;}
+.truck-card-body p{font-size:14px; color:var(--sub); margin-bottom:14px;}
+.truck-tags{display:flex; gap:6px; flex-wrap:wrap;}
+.truck-tags span{background:var(--bg); padding:4px 10px; border-radius:8px; font-size:12px; font-weight:600; color:var(--sub);}
+@media(max-width:880px){.truck-grid{grid-template-columns:1fr;}}
+
+/* ===== GALLERY ===== */
+.gallery{background:var(--bg);}
+.gal-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.gal-item{border-radius:var(--radius); overflow:hidden; aspect-ratio:1; position:relative; cursor:pointer;}
+.gal-item img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-item.wide{grid-column:span 2; aspect-ratio:2/1;}
+.gal-caption{position:absolute; bottom:0; left:0; right:0; padding:14px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:#fff; font-size:13px; font-weight:600; opacity:0; transition:opacity .3s ease;}
+.gal-item:hover .gal-caption{opacity:1;}
+@media(max-width:880px){.gal-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.gal-grid{grid-template-columns:1fr;} .gal-item.wide{grid-column:span 1; aspect-ratio:4/3;}}
+
+/* ===== HOW ===== */
+.how-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative;}
+.how-grid::before{content:''; position:absolute; top:40px; left:12%; right:12%; height:2px; background:var(--line); z-index:0;}
+.how-card{position:relative; z-index:1; text-align:center; background:#fff; border-radius:var(--radius); padding:32px 20px; box-shadow:var(--shadow);}
+.how-num{width:48px; height:48px; border-radius:50%; background:var(--orange); color:#fff; font-weight:900; font-size:18px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;}
+.how-card h3{font-size:17px; margin-bottom:8px;}
+.how-card p{font-size:13.5px; color:var(--sub);}
+@media(max-width:880px){.how-grid{grid-template-columns:repeat(2,1fr);} .how-grid::before{display:none;}}
+@media(max-width:560px){.how-grid{grid-template-columns:1fr;}}
+
+/* ===== REVIEWS ===== */
+.reviews{background:var(--bg);}
+.rev-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.rev-card{background:#fff; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow);}
+.rev-card .stars{color:#FBBF24; font-size:16px; margin-bottom:14px; letter-spacing:2px;}
+.rev-card .quote{font-size:15px; line-height:1.7; margin-bottom:18px;}
+.rev-card .who{font-size:13px; font-weight:700; color:var(--sub);}
+@media(max-width:880px){.rev-grid{grid-template-columns:1fr;}}
+
+/* ===== QUOTE FORM ===== */
+.quote{background:var(--navy); color:#fff; position:relative; overflow:hidden;}
+.quote-bg{position:absolute; inset:0; background:url('images/event-food-tents.jpg') center/cover; opacity:0.12;}
+.quote-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:start; position:relative; z-index:2;}
+.quote-left h2{font-size:clamp(26px,4vw,38px); font-weight:900; line-height:1.35; margin-bottom:18px;}
+.quote-left p{opacity:0.8; font-size:15.5px; margin-bottom:28px;}
+.quote-chips{display:flex; gap:12px; flex-wrap:wrap;}
+.quote-chip{display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:999px; padding:10px 18px; font-size:13.5px; font-weight:600;}
+.quote-chip b{color:var(--orange); font-family:'Space Grotesk',sans-serif;}
+.quote-card{background:#fff; color:var(--ink); border-radius:var(--radius); padding:36px; box-shadow:var(--shadow-lg);}
+.quote-card h3{font-size:20px; font-weight:900; margin-bottom:20px; text-align:center;}
+.form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+.form-row.full{grid-template-columns:1fr;}
+label{font-size:13px; font-weight:700; margin-bottom:5px; display:block;}
+input,textarea{width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; font-family:inherit; font-size:14px; background:var(--bg); transition:border-color .2s;}
+input:focus,textarea:focus{outline:none; border-color:var(--orange);}
+textarea{resize:vertical; min-height:80px;}
+.quote-card .btn-orange{width:100%; justify-content:center; margin-top:8px; padding:16px;}
+.success{display:none; text-align:center; padding:30px 10px;}
+.success.show{display:block;}
+.success .big{font-size:40px;}
+.success h3{font-size:20px; margin:14px 0 6px;}
+.success p{font-size:14px; color:var(--sub);}
+@media(max-width:880px){.quote-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;}}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:740px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
+details{background:#fff; border-radius:12px; padding:20px 24px; box-shadow:var(--shadow);}
+summary{font-weight:700; font-size:16px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+"; font-size:22px; color:var(--orange); transition:transform .2s;}
+details[open] summary::after{transform:rotate(45deg);}
+details p{margin-top:12px; font-size:15px; color:var(--sub); line-height:1.7;}
+
+/* ===== CTA BANNER ===== */
+.cta-banner{background:var(--orange); color:#fff; text-align:center; padding:64px 0;}
+.cta-banner h2{font-size:clamp(24px,4vw,36px); font-weight:900;}
+.cta-banner p{margin-top:12px; opacity:0.9; font-size:16px;}
+.cta-banner .btn{margin-top:28px;}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;}
+.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.1);}
+.foot-logo{font-weight:900; font-size:20px; color:#fff;}
+.foot-grid p{font-size:13px; margin-top:12px; line-height:1.9; opacity:0.7;}
+.foot-col h4{font-size:14px; color:#fff; margin-bottom:14px; font-weight:700;}
+.foot-col li{font-size:13px; margin-bottom:10px; opacity:0.7;}
+.foot-col li a:hover{opacity:1; color:var(--orange);}
+.foot-phone{font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--orange);}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:20px; font-size:12px; opacity:0.5; flex-wrap:wrap; gap:8px;}
+@media(max-width:880px){.foot-grid{grid-template-columns:1fr; gap:28px;}}
+
+/* ===== BACK TO TOP ===== */
+.back-top{position:fixed; bottom:24px; right:24px; z-index:40; width:46px; height:46px; border-radius:50%; background:var(--orange); color:#fff; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(255,107,53,0.4); display:flex; align-items:center; justify-content:center; font-size:18px; opacity:0; transition:opacity .3s ease;}
+.back-top.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 100 60"><rect x="6" y="20" width="34" height="26" rx="6" fill="#FF6B35"/><rect x="36" y="10" width="58" height="36" rx="8" fill="#FF6B35"/><rect x="14" y="26" width="16" height="12" rx="3" fill="#fff"/><circle cx="26" cy="48" r="8" fill="#1A1A2E"/><circle cx="78" cy="48" r="8" fill="#1A1A2E"/></svg>
+      푸드셀럽
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">서비스 소개</a>
+      <a href="#menu">메뉴 카테고리</a>
+      <a href="#trucks">보유 트럭</a>
+      <a href="#gallery">갤러리</a>
+      <a href="#reviews">고객 후기</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-phone">📞 010-2829-0725</span>
+      <a href="#quote" class="btn btn-orange btn-sm">간단 무료견적</a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1>행사에 필요한 푸드트럭,<br><span class="hl">푸드셀럽</span>이<br>빠르게 매칭합니다</h1>
+        <p>기업 행사, 학교 축제, 웨딩, 촬영장 케이터링까지. 전국 검증된 푸드트럭 네트워크를 보유하고 있어, 예산과 컨셉에 딱 맞는 트럭을 빠르게 연결해 드립니다.</p>
+        <div class="hero-ctas">
+          <a href="#quote" class="btn btn-orange">무료 견적 요청하기</a>
+          <a href="#trucks" class="btn btn-outline">보유 트럭 보기</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num" data-target="1150" data-suffix="+">0</div><div class="txt">보유 트럭</div></div>
+          <div class="hero-stat"><div class="num" data-target="500" data-suffix="+">0</div><div class="txt">누적 행사</div></div>
+          <div class="hero-stat"><div class="num" data-target="150" data-suffix="+">0</div><div class="txt">메뉴 종류</div></div>
+          <div class="hero-stat"><div class="num" data-target="98" data-suffix="%">0</div><div class="txt">만족도</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">SERVICES</span>
+      <h2>푸드셀럽이 제공하는 서비스</h2>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon" style="background:#FFF3ED;">🚚</div>
+        <h3>푸드트럭 매칭</h3>
+        <p>행사 규모, 예산, 메뉴 컨셉에 맞는 최적의 푸드트럭을 매칭해드립니다.</p>
+        <a href="#quote" class="btn btn-orange btn-sm">견적 받기</a>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon" style="background:#EEF7FF;">🍽️</div>
+        <h3>케이터링 서비스</h3>
+        <p>촬영장, 기업 행사, 웨딩 등 현장에 맞춤형 케이터링 서비스를 제공합니다.</p>
+        <a href="#quote" class="btn btn-dark btn-sm">상담하기</a>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon" style="background:#ECFDF5;">📋</div>
+        <h3>행사 기획 컨설팅</h3>
+        <p>메뉴 구성부터 동선, 세팅까지 전담 매니저가 행사를 함께 기획합니다.</p>
+        <a href="#quote" class="btn btn-dark btn-sm">문의하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU CATEGORIES -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">MENU</span>
+      <h2>150여 가지 메뉴를 보유하고 있습니다</h2>
+      <p>식사부터 간식, 디저트, 음료까지 행사에 필요한 모든 메뉴를 제공합니다.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <div class="menu-card-img"><img src="images/menu-steak-shrimp.jpg" alt="식사 메뉴" loading="lazy"></div>
+        <div class="menu-card-body"><h3>🍖 식사</h3><p>스테이크, 새우, 보쌈, 팟타이, 김치찌개 등</p></div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-card-img"><img src="images/eulji-tteokbokki.jpg" alt="간식 메뉴" loading="lazy"></div>
+        <div class="menu-card-body"><h3>🍢 간식</h3><p>떡볶이, 닭강정, 닭꼬치, 감자튀김, 모둠튀김 등</p></div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-card-img"><img src="images/menu-spicy-skewer.jpg" alt="숯불 닭꼬치" loading="lazy"></div>
+        <div class="menu-card-body"><h3>🔥 그릴 &amp; 바비큐</h3><p>숯불 닭꼬치, 삼겹살, 스테이크, 소시지 등</p></div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-card-img"><img src="images/catering-champagne.jpg" alt="음료" loading="lazy"></div>
+        <div class="menu-card-body"><h3>🍸 음료 &amp; 칵테일</h3><p>커피, 에이드, 스무디, 수제 칵테일 등</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT TYPES -->
+<section class="section events" id="events">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label" style="background:rgba(255,107,53,0.2);">EVENTS</span>
+      <h2 style="color:#fff;">어떤 행사든 매칭해드립니다</h2>
+      <p style="color:rgba(255,255,255,0.65);">기업부터 지자체까지, 규모와 장소에 상관없이 최적의 트럭을 연결합니다.</p>
+    </div>
+    <div class="evt-grid">
+      <div class="evt-card reveal"><div class="ico">🏢</div><div class="name">기업 행사</div><div class="desc">워크숍·세미나·송년회</div></div>
+      <div class="evt-card reveal"><div class="ico">🎓</div><div class="name">학교 축제</div><div class="desc">대학교·고등학교 축제</div></div>
+      <div class="evt-card reveal"><div class="ico">🎪</div><div class="name">지역 축제</div><div class="desc">지자체·문화 축제</div></div>
+      <div class="evt-card reveal"><div class="ico">💐</div><div class="name">웨딩·돌잔치</div><div class="desc">야외웨딩·가든파티</div></div>
+      <div class="evt-card reveal"><div class="ico">🎬</div><div class="name">촬영 케이터링</div><div class="desc">드라마·영화·광고 현장</div></div>
+      <div class="evt-card reveal"><div class="ico">🛍️</div><div class="name">팝업·브랜드</div><div class="desc">팝업스토어·브랜드 행사</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR TRUCKS -->
+<section class="section" id="trucks">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">OUR TRUCKS</span>
+      <h2>검증된 푸드트럭 네트워크</h2>
+      <p>각 분야 최고의 푸드트럭을 직접 운영하며, 믿을 수 있는 파트너 트럭들과 함께합니다.</p>
+    </div>
+    <div class="truck-grid">
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-gorilla-night-open.jpg" alt="고릴라 바비큐" loading="lazy">
+          <span class="truck-badge">BBQ</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>GORILLA BARBEQUE</h3>
+
+          <div class="truck-tags"><span>스테이크</span><span>새우</span><span>BBQ</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-flow-crowd.jpg" alt="플로우" loading="lazy">
+          <span class="truck-badge">바 & 음료</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>FLOW</h3>
+          <div class="truck-tags"><span>칵테일</span><span>음료</span><span>야간행사</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-redoven.jpg" alt="빨간화덕" loading="lazy">
+          <span class="truck-badge">피자</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>빨간화덕</h3>
+          <div class="truck-tags"><span>화덕피자</span><span>페퍼로니</span><span>치즈</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-habshu-open.jpg" alt="햅스후" loading="lazy">
+          <span class="truck-badge">핫도그</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>HABS.HU</h3>
+          <div class="truck-tags"><span>핫도그</span><span>버거</span><span>아이스커피</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-daldaran-open.jpg" alt="달다란트럭" loading="lazy">
+          <span class="truck-badge">디저트</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>DALDARAN</h3>
+          <div class="truck-tags"><span>커피</span><span>디저트</span><span>아이스크림</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-remember-open.jpg" alt="리멤버" loading="lazy">
+          <span class="truck-badge">일식</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>리멤버</h3>
+          <div class="truck-tags"><span>야키소바</span><span>일식</span><span>포장마차</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-paradise-open.jpg" alt="파라다이스" loading="lazy">
+          <span class="truck-badge">음료</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>Paradise Juice & Coffee</h3>
+          <div class="truck-tags"><span>주스</span><span>커피</span><span>에이드</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-mychu-open.jpg" alt="마이츄" loading="lazy">
+          <span class="truck-badge">츄러스</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>마이츄 츄러스</h3>
+          <div class="truck-tags"><span>츄러스</span><span>수제</span><span>디저트</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-monster-open.jpg" alt="몬스터" loading="lazy">
+          <span class="truck-badge">닭강정</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>몬스터 닭강정</h3>
+          <div class="truck-tags"><span>닭강정</span><span>후라이드</span><span>양념</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="truck-hidden" id="truckMore">
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-streetpizza.jpg" alt="스트릿피자" loading="lazy">
+          <span class="truck-badge">피자</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>스트릿피자</h3>
+          <div class="truck-tags"><span>피자</span><span>화덕</span><span>스트릿</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-jungwoo.jpg" alt="정우닭꼬치" loading="lazy">
+          <span class="truck-badge">꼬치</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>정우 수제 닭꼬치</h3>
+          <div class="truck-tags"><span>닭꼬치</span><span>숯불</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-achuholic-open.jpg" alt="아츄홀릭" loading="lazy">
+          <span class="truck-badge">간식</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>아츄홀릭</h3>
+          <div class="truck-tags"><span>아이스크림</span><span>츄러스</span><span>핫도그</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-cupbob-open.jpg" alt="컵밥집" loading="lazy">
+          <span class="truck-badge">컵밥</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>Cupbob Please!</h3>
+          <div class="truck-tags"><span>컵밥</span><span>덮밥</span><span>간편식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-wasabari-open.jpg" alt="푸드트럭하우스" loading="lazy">
+          <span class="truck-badge">감자·음료</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>푸드트럭하우스</h3>
+          <div class="truck-tags"><span>감자튀김</span><span>음료</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-steakout.jpg" alt="스테이크아웃" loading="lazy">
+          <span class="truck-badge">스테이크</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>STEAKOUT</h3>
+          <div class="truck-tags"><span>스테이크</span><span>오리지널</span><span>프리미엄</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-aurora-open.jpg" alt="오로라" loading="lazy">
+          <span class="truck-badge">음료</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>AURORA TAKO</h3>
+          <div class="truck-tags"><span>커피</span><span>에이드</span><span>스무디</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-cooingcooing-open.jpg" alt="쿠잉쿠잉" loading="lazy">
+          <span class="truck-badge">디저트</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>쿠잉쿠잉</h3>
+          <div class="truck-tags"><span>연아이스크림</span><span>솜사탕</span><span>디저트</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-chikingjoking-better.jpg" alt="치킹조킹" loading="lazy">
+          <span class="truck-badge">치킨</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>CHIKING JOKING</h3>
+          <div class="truck-tags"><span>치킨</span><span>덮밥</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-fume-open.jpg" alt="퓸" loading="lazy">
+          <span class="truck-badge">새우</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>FUME</h3>
+          <div class="truck-tags"><span>새우</span><span>해산물</span><span>튀김</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy">
+          <span class="truck-badge">새우</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>새우당</h3>
+          <div class="truck-tags"><span>새우튀김</span><span>해산물</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-majoo-open.jpg" alt="마주" loading="lazy">
+          <span class="truck-badge">초밥</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>MAJOO</h3>
+          <div class="truck-tags"><span>초밥</span><span>불초밥</span><span>연어</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-itwaffle-open.jpg" alt="잇와플" loading="lazy">
+          <span class="truck-badge">와플</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>IT WAFFLE</h3>
+          <div class="truck-tags"><span>누텔라와플</span><span>와플</span><span>디저트</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-kkotmatcha-open.jpg" alt="꽃맛차" loading="lazy">
+          <span class="truck-badge">쌈겹살</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>꽃맛차</h3>
+          <div class="truck-tags"><span>쌈겹살</span><span>고기</span><span>한식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-gopchang-open.jpg" alt="야채곱창" loading="lazy">
+          <span class="truck-badge">곱창</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>야채곱창</h3>
+          <div class="truck-tags"><span>야채곱창</span><span>야끼소바</span><span>볶음면</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-mrsoftee-open.jpg" alt="MR.SOFTEE" loading="lazy">
+          <span class="truck-badge">아이스크림</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>MR.SOFTEE</h3>
+          <div class="truck-tags"><span>소프트아이스크림</span><span>치즈밀크</span><span>초코</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy">
+          <span class="truck-badge">닭강정</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>강정이네</h3>
+          <div class="truck-tags"><span>닭강정</span><span>수제</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-sobbang-open.jpg" alt="소방푸드트럭" loading="lazy">
+          <span class="truck-badge">닭꼬치</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>SOBBANG 푸드트럭</h3>
+          <div class="truck-tags"><span>40cm닭꼬치</span><span>순살</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img">
+          <img src="images/truck-sunsal-open.jpg" alt="순살닭꼬치" loading="lazy">
+          <span class="truck-badge">닭꼬치</span>
+        </div>
+        <div class="truck-card-body">
+          <h3>순살닭꼬치</h3>
+          <div class="truck-tags"><span>순살닭꼬치</span><span>야간</span><span>간식</span></div>
+        </div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-arawak.jpg" alt="ARAWAK" loading="lazy"><span class="truck-badge">BBQ</span></div>
+        <div class="truck-card-body"><h3>ARAWAK</h3><div class="truck-tags"><span>자메이칸BBQ</span><span>레게</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-yellowoven.jpg" alt="YELLOW OVEN" loading="lazy"><span class="truck-badge">피자</span></div>
+        <div class="truck-card-body"><h3>YELLOW OVEN</h3><div class="truck-tags"><span>피자</span><span>화덕</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-woodwork.jpg" alt="Wood Work" loading="lazy"><span class="truck-badge">스테이크</span></div>
+        <div class="truck-card-body"><h3>Wood Work</h3><div class="truck-tags"><span>스테이크</span><span>규카츠</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-double88.jpg" alt="88닭강정" loading="lazy"><span class="truck-badge">닭강정</span></div>
+        <div class="truck-card-body"><h3>Double Eight 88</h3><div class="truck-tags"><span>닭강정</span><span>치킨</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-loco.jpg" alt="LOCO" loading="lazy"><span class="truck-badge">스테이크</span></div>
+        <div class="truck-card-body"><h3>LOCO TRUCK</h3><div class="truck-tags"><span>스테이크</span><span>스패니쉬</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-geuni.jpg" alt="그니식당" loading="lazy"><span class="truck-badge">한식</span></div>
+        <div class="truck-card-body"><h3>그니식당</h3><div class="truck-tags"><span>한식</span><span>Korean Food</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-starbig.jpg" alt="STARBIG" loading="lazy"><span class="truck-badge">버거</span></div>
+        <div class="truck-card-body"><h3>STARBIG</h3><div class="truck-tags"><span>버거</span><span>Delicious</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-hank.jpg" alt="HANK" loading="lazy"><span class="truck-badge">핫도그</span></div>
+        <div class="truck-card-body"><h3>HANK STREET FOOD</h3><div class="truck-tags"><span>핫도그</span><span>스트릿</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-shrimpgg.jpg" alt="강남날라리" loading="lazy"><span class="truck-badge">새우</span></div>
+        <div class="truck-card-body"><h3>Shrimp GG</h3><div class="truck-tags"><span>새우</span><span>해산물</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-lrito.jpg" alt="L.Rito" loading="lazy"><span class="truck-badge">멕시칸</span></div>
+        <div class="truck-card-body"><h3>L.Rito</h3><div class="truck-tags"><span>부리또</span><span>타코</span><span>나초</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-tadaddi.jpg" alt="TADADDI" loading="lazy"><span class="truck-badge">디저트</span></div>
+        <div class="truck-card-body"><h3>TADADDI</h3><div class="truck-tags"><span>디저트</span><span>달콤</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-sweetjin.jpg" alt="Sweet Jin" loading="lazy"><span class="truck-badge">츄러스</span></div>
+        <div class="truck-card-body"><h3>Sweet Jin</h3><div class="truck-tags"><span>왕빅츄러스</span><span>수제</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-ontheradio.jpg" alt="ON THE RADIO" loading="lazy"><span class="truck-badge">음료</span></div>
+        <div class="truck-card-body"><h3>ON THE RADIO</h3><div class="truck-tags"><span>음료</span><span>칵테일</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-tasamshigan.jpg" alt="타삼시간" loading="lazy"><span class="truck-badge">타코야끼</span></div>
+        <div class="truck-card-body"><h3>타삼시간</h3><div class="truck-tags"><span>타코야끼</span><span>일식</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-youngbbq.jpg" alt="Young BBQ" loading="lazy"><span class="truck-badge">BBQ</span></div>
+        <div class="truck-card-body"><h3>Young BBQ</h3><div class="truck-tags"><span>BBQ</span><span>바비큐</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-kingfry.jpg" alt="King Fry Prince" loading="lazy"><span class="truck-badge">치킨</span></div>
+        <div class="truck-card-body"><h3>King Fry Prince</h3><div class="truck-tags"><span>치킨</span><span>닭강정</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-sundaegopchang.jpg" alt="순대곱창" loading="lazy"><span class="truck-badge">곱창</span></div>
+        <div class="truck-card-body"><h3>순대곱창볶음</h3><div class="truck-tags"><span>순대</span><span>곱창볶음</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-juicecafe.jpg" alt="주스카페" loading="lazy"><span class="truck-badge">주스</span></div>
+        <div class="truck-card-body"><h3>수박주스 카페</h3><div class="truck-tags"><span>수박주스</span><span>카페</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-kitchenon.jpg" alt="Kitchen ON" loading="lazy"><span class="truck-badge">닭강정</span></div>
+        <div class="truck-card-body"><h3>Kitchen ON</h3><div class="truck-tags"><span>닭강정</span><span>치킨</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-cookcompany-open.jpg" alt="COOK & COMPANY" loading="lazy"><span class="truck-badge">카페</span></div>
+        <div class="truck-card-body"><h3>COOK & COMPANY</h3><div class="truck-tags"><span>커피</span><span>디저트</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-yeoptong-open.jpg" alt="엽통꼬치" loading="lazy"><span class="truck-badge">꼬치</span></div>
+        <div class="truck-card-body"><h3>엽통꼬치</h3><div class="truck-tags"><span>엽통꼬치</span><span>타코야끼</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-nomadtaste-open.jpg" alt="미식방랑단" loading="lazy"><span class="truck-badge">BBQ</span></div>
+        <div class="truck-card-body"><h3>미식방랑단 Nomad Taste</h3><div class="truck-tags"><span>BBQ</span><span>그릴</span></div></div>
+      </div>
+      <div class="truck-card reveal">
+        <div class="truck-card-img"><img src="images/truck-saewoogangjeong-open.jpg" alt="새우강정" loading="lazy"><span class="truck-badge">새우강정</span></div>
+        <div class="truck-card-body"><h3>새우강정</h3><div class="truck-tags"><span>새우강정</span><span>튀김</span></div></div>
+      </div>
+    </div>
+    <div class="truck-toggle">
+      <button class="btn btn-orange" id="truckToggleBtn" onclick="toggleTrucks()">더보기 +</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">GALLERY</span>
+      <h2>현장의 맛있는 순간들</h2>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gal-item wide"><img src="images/event-crowd-trucks.jpg" alt="기업 체육대회 현장"><div class="gal-caption">기업 체육대회 · 트럭 운영 현장</div></div>
+      <div class="gal-item"><img src="images/scene-corp-crowd2.jpg" alt="기업행사 군중"><div class="gal-caption">기업 행사 · 트럭 앞 대기줄</div></div>
+      <div class="gal-item"><img src="images/scene-catering-crowd.jpg" alt="케이터링 군중"><div class="gal-caption">케이터링 · 음식 서비스 현장</div></div>
+      <div class="gal-item"><img src="images/scene-apt-dakgangjeong.jpg" alt="아파트 단지 닭강정 트럭"><div class="gal-caption">아파트 단지 · 닭강정 트럭</div></div>
+      <div class="gal-item"><img src="images/gorilla-tv-shooting.jpg" alt="생방송투데이 촬영"><div class="gal-caption">고릴라 BBQ · 생방송투데이</div></div>
+      <div class="gal-item wide"><img src="images/event-food-tents.jpg" alt="축제 텐트 군중"><div class="gal-caption">축제 현장 · 텐트 &amp; 군중</div></div>
+      <div class="gal-item"><img src="images/scene-indoor-party.jpg" alt="실내 파티"><div class="gal-caption">실내 케이터링 파티</div></div>
+      <div class="gal-item"><img src="images/scene-party-drinks.jpg" alt="파티 음료바"><div class="gal-caption">파티 · 음료바 운영</div></div>
+      <div class="gal-item"><img src="images/scene-apt-wide.jpg" alt="아파트 단지 전경"><div class="gal-caption">아파트 단지 · 다중 트럭</div></div>
+      <div class="gal-item"><img src="images/event-trucks-lineup.jpg" alt="야간 트럭 라인업"><div class="gal-caption">야간 행사 · 트럭 라인업</div></div>
+      <div class="gal-item wide"><img src="images/catering-service.jpg" alt="뷔페 서비스"><div class="gal-caption">프리미엄 케이터링 뷔페</div></div>
+      <div class="gal-item"><img src="images/catering-staff.jpg" alt="스태프 운영"><div class="gal-caption">전문 스태프 · 음료바</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">PROCESS</span>
+      <h2>간단한 4단계로 매칭 완료</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal"><div class="how-num">1</div><h3>견적 요청</h3><p>행사 날짜, 장소, 인원, 원하는 메뉴를 알려주세요.</p></div>
+      <div class="how-card reveal"><div class="how-num">2</div><h3>맞춤 제안</h3><p>전담 매니저가 예산과 컨셉에 맞는 트럭을 추천합니다.</p></div>
+      <div class="how-card reveal"><div class="how-num">3</div><h3>트럭 확정</h3><p>견적을 비교하고 원하는 트럭을 확정합니다.</p></div>
+      <div class="how-card reveal"><div class="how-num">4</div><h3>현장 운영</h3><p>당일 세팅부터 운영, 철수까지 완벽하게 진행합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">REVIEWS</span>
+      <h2>한번 경험하면 꾸준히 찾아주는 고객</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">트럭 6대를 한 번에 섭외해야 했는데, 매니저님이 메뉴 구성까지 함께 고민해 주셔서 행사가 훨씬 풍성해졌어요.</p>
+        <div class="who">기업 행사 담당자 · 삼성전자</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">축제 예산이 빠듯했는데 학생들 취향에 맞는 트럭을 합리적인 가격으로 연결해 주셨어요. 다음 축제도 또 부탁드릴게요.</p>
+        <div class="who">대학교 축제 기획팀 · 단국대</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">촬영 일정이 갑자기 당겨졌는데도 당일 컨택으로 트럭을 보내주셔서 정말 든든했어요. 매번 감사합니다.</p>
+        <div class="who">영상 제작사 PD · CJ ENM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section class="section quote" id="quote">
+  <div class="quote-bg"></div>
+  <div class="container quote-grid">
+    <div class="quote-left reveal">
+      <h2>지금 바로<br>무료 견적을 받아보세요</h2>
+      <p>간단한 정보만 남겨주시면, 전담 매니저가 맞춤 트럭 리스트와 견적을 빠르게 보내드립니다.</p>
+      <div style="background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.3); border-radius:14px; padding:20px; margin-top:24px;">
+        <div style="font-weight:900; font-size:16px; margin-bottom:12px; color:var(--orange);">🔥 진행 중인 행사</div>
+        <div style="font-size:14px; line-height:1.9; opacity:0.9;">
+          <strong>무도런 2026</strong> · 6월 7일(일)<br>
+          📍 문화비축기지 · ⏰ 07:30~16:00<br>
+          🚚 모집 3대 · 음식부스 3부스 동시진행<br>
+          <span style="font-size:12.5px; opacity:0.7;">※ 작년 여의도 진행 시 줄이 너무 길었던 인기 행사!</span>
+        </div>
+      </div>
+      <div class="quote-chips" style="margin-top:20px;">
+        <span class="quote-chip">⏱️ 평균 응답 <b>3시간</b> 이내</span>
+        <span class="quote-chip">💰 견적 <b>무료</b></span>
+        <span class="quote-chip">🚚 트럭 <b>1,150+</b>대 보유</span>
+      </div>
+    </div>
+    <div class="quote-card reveal">
+      <h3>🚚 간단 무료견적</h3>
+      <form id="quoteForm">
+        <div class="form-row">
+          <div><label>담당자명 / 업체명</label><input type="text" placeholder="홍길동 / OO기획" required></div>
+          <div><label>연락처</label><input type="tel" placeholder="010-0000-0000" required></div>
+        </div>
+        <div class="form-row">
+          <div><label>행사 날짜</label><input type="date" required></div>
+          <div><label>예상 인원 / 모집 대수</label><input type="text" placeholder="500명 / 3대" required></div>
+        </div>
+        <div class="form-row full">
+          <div><label>행사 장소</label><input type="text" placeholder="서울 마포구 문화비축기지" required></div>
+        </div>
+        <div class="form-row">
+          <div><label>행사 유형</label>
+            <select style="width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; font-family:inherit; font-size:14px; background:var(--bg);">
+              <option>일반판매 행사</option><option>기업 행사</option><option>학교 축제</option><option>지역 축제</option><option>마라톤·스포츠</option><option>웨딩·돌잔치</option><option>촬영 케이터링</option><option>팝업·브랜드 행사</option><option>시위 현장</option><option>기타</option>
+            </select>
+          </div>
+          <div><label>운영 시간</label><input type="text" placeholder="07:30 ~ 16:00"></div>
+        </div>
+        <div class="form-row">
+          <div><label>전기 지원</label>
+            <select style="width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; font-family:inherit; font-size:14px; background:var(--bg);">
+              <option>전기 지원 가능</option><option>자가발전</option><option>협의 필요</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row full">
+          <div style="background:var(--bg); border-radius:10px; padding:14px 16px; margin-bottom:14px; font-size:13px; color:var(--sub); line-height:1.7;">
+            🍽️ 특별히 원하시는 메뉴가 없다면, <b style="color:var(--ink);">푸드셀럽이 데이터 기반으로 행사에 최적화된 메뉴를 추천</b>해 드립니다.<br>
+            ⚠️ 행사 스케줄이 많이 겹치는 시기에는 트럭 모집이 어려울 수 있으니 <b style="color:var(--ink);">빠른 문의를 권장</b>드립니다.
+          </div>
+        </div>
+        <div class="form-row full">
+          <div><label>행사 상세 내용 / 특이사항</label><textarea rows="5" placeholder="예: 음식부스 3부스 동시진행, 다양한 이벤트 및 무대 진행&#10;행사 홈페이지: https://...&#10;작년 진행 시 참고사항 등"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-orange">견적 요청 보내기</button>
+      </form>
+      <div class="success" id="successMsg">
+        <div class="big">🚚💌</div>
+        <h3>요청이 접수됐어요!</h3>
+        <p>24시간 내로 전담 매니저가 연락드릴게요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">FAQ</span>
+      <h2>자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details><summary>최소 몇 대부터 섭외 가능한가요?</summary><p>트럭 1대부터도 가능합니다. 행사 규모에 맞춰 자유롭게 구성할 수 있어요.</p></details>
+      <details><summary>견적 요청에 비용이 드나요?</summary><p>견적 요청과 상담은 모두 무료입니다. 마음에 드는 제안을 받은 뒤에 결정하시면 됩니다.</p></details>
+      <details><summary>지방 행사도 가능한가요?</summary><p>전국 어디든 출동 가능합니다. 지역을 알려주시면 가까운 트럭부터 추천해 드려요.</p></details>
+      <details><summary>우천 시에는 어떻게 되나요?</summary><p>우천 대비 천막·실내 세팅이 가능한 트럭을 우선 안내하고, 일정 변경도 함께 조율해 드립니다.</p></details>
+      <details><summary>메뉴 커스터마이징이 가능한가요?</summary><p>네. 행사 컨셉과 예산에 맞춰 메뉴 구성을 자유롭게 조정할 수 있습니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>푸드트럭 사장님이신가요?</h2>
+    <p>푸드셀럽 네트워크에 등록하고, 전국 행사 의뢰를 받아보세요.</p>
+    <a href="#quote" class="btn btn-white">트럭 등록 문의하기</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">푸드셀럽</div>
+        <p>푸드셀럽 · 대표 이상하<br>사업자등록번호 750-02-02392<br>서울특별시 중구 을지로 281, DDP 팔거리광장 1층(을지로7가)<br>업태 음식점업 · 종목 푸드트럭</p>
+      </div>
+      <div class="foot-col">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="#services">서비스 소개</a></li>
+          <li><a href="#menu">메뉴 카테고리</a></li>
+          <li><a href="#trucks">보유 트럭</a></li>
+          <li><a href="#gallery">갤러리</a></li>
+          <li><a href="#reviews">고객 후기</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>문의</h4>
+        <div class="foot-phone">010-2829-0725</div>
+        <ul style="margin-top:14px;">
+          <li>이메일 ejbs2022@naver.com</li>
+          <li>상담시간 09:00–18:00</li>
+          <li>카카오톡 상담 가능</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; FoodCeleb. ALL RIGHTS RESERVED.</span>
+      <span>이용약관 · 개인정보처리방침</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="맨 위로">↑</button>
+
+<script>
+// Nav toggle
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>{navLinks.classList.toggle('open');});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// Count up
+function countUp(el){
+  const t=+el.dataset.target,s=el.dataset.suffix||'',d=1200,st=performance.now();
+  (function tick(n){const p=Math.min((n-st)/d,1);el.textContent=Math.floor(p*t).toLocaleString('ko-KR')+s;if(p<1)requestAnimationFrame(tick);})(performance.now());
+}
+let counted=false;
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('.num[data-target]').forEach(countUp);}}),{threshold:0.3}).observe(document.querySelector('.hero-stats'));
+
+// Reveal
+const revObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}}),{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Truck toggle
+function toggleTrucks(){
+  const more=document.getElementById('truckMore');
+  const btn=document.getElementById('truckToggleBtn');
+  if(more.classList.contains('show')){
+    more.classList.remove('show');
+    btn.textContent='더보기 +';
+    document.getElementById('trucks').scrollIntoView({behavior:'smooth'});
+  } else {
+    more.classList.add('show');
+    btn.textContent='접기 −';
+    more.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  }
+}
+
+// Back to top
+const bt=document.getElementById('backTop');
+window.addEventListener('scroll',()=>bt.classList.toggle('show',scrollY>500));
+bt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+// Form
+const form=document.getElementById('quoteForm'),suc=document.getElementById('successMsg');
+form.addEventListener('submit',e=>{e.preventDefault();form.style.display='none';suc.classList.add('show');});
+</script>
+</body>
+</html>
