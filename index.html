@@ -169,7 +169,6 @@ ul{list-style:none;}
   transition:opacity .3s ease, transform .3s ease;
 }
 .marquee-card:hover .marquee-card-name{opacity:1; transform:translateY(0);}
-/* 모바일: 애니메이션 그대로 유지 (touch 기기) */
 @media(max-width:880px){
   .marquee-card{width:200px; height:145px;}
   .marquee-track{animation-duration:35s;}
@@ -399,56 +398,116 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
     </div>
   </div>
   <div class="marquee-wrap">
-    <!-- ROW 1: 왼쪽으로 -->
     <div class="marquee-row">
       <div class="marquee-track">
-        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="고릴라 바비큐" loading="lazy"><div class="marquee-card-name">고릴라 바비큐</div></div>
+        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="GORILLA BARBEQUE" loading="lazy"><div class="marquee-card-name">GORILLA BARBEQUE</div></div>
+        <div class="marquee-card"><img src="images/truck-flow-crowd.jpg" alt="FLOW" loading="lazy"><div class="marquee-card-name">FLOW</div></div>
+        <div class="marquee-card"><img src="images/truck-redoven.jpg" alt="빨간화덕" loading="lazy"><div class="marquee-card-name">빨간화덕</div></div>
         <div class="marquee-card"><img src="images/truck-habshu-open.jpg" alt="HABS.HU" loading="lazy"><div class="marquee-card-name">HABS.HU</div></div>
-        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="오로라" loading="lazy"><div class="marquee-card-name">오로라</div></div>
-        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="달다란" loading="lazy"><div class="marquee-card-name">달다란</div></div>
-        <div class="marquee-card"><img src="images/truck-premium-skewer-open.jpg" alt="프리미엄 꼬치" loading="lazy"><div class="marquee-card-name">프리미엄 꼬치</div></div>
-        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
-        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="파라다이스" loading="lazy"><div class="marquee-card-name">파라다이스</div></div>
-        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="퓨메" loading="lazy"><div class="marquee-card-name">퓨메</div></div>
-        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃말차" loading="lazy"><div class="marquee-card-name">꽃말차</div></div>
+        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="DALDARAN" loading="lazy"><div class="marquee-card-name">DALDARAN</div></div>
         <div class="marquee-card"><img src="images/truck-remember-open.jpg" alt="리멤버" loading="lazy"><div class="marquee-card-name">리멤버</div></div>
-        <!-- duplicate for seamless loop -->
-        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="고릴라 바비큐" loading="lazy"><div class="marquee-card-name">고릴라 바비큐</div></div>
+        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="Paradise Juice & Coffee" loading="lazy"><div class="marquee-card-name">Paradise Juice & Coffee</div></div>
+        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄 츄러스" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
+        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
+        <div class="marquee-card"><img src="images/truck-streetpizza.jpg" alt="스트릿피자" loading="lazy"><div class="marquee-card-name">스트릿피자</div></div>
+        <div class="marquee-card"><img src="images/truck-jungwoo.jpg" alt="정우 수제 닭꼬치" loading="lazy"><div class="marquee-card-name">정우 수제 닭꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-achuholic-open.jpg" alt="아츄홀릭" loading="lazy"><div class="marquee-card-name">아츄홀릭</div></div>
+        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="Cupbob Please!" loading="lazy"><div class="marquee-card-name">Cupbob Please!</div></div>
+        <div class="marquee-card"><img src="images/truck-wasabari-open.jpg" alt="푸드트럭하우스" loading="lazy"><div class="marquee-card-name">푸드트럭하우스</div></div>
+        <div class="marquee-card"><img src="images/truck-steakout.jpg" alt="STEAKOUT" loading="lazy"><div class="marquee-card-name">STEAKOUT</div></div>
+        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="AURORA TAKO" loading="lazy"><div class="marquee-card-name">AURORA TAKO</div></div>
+        <div class="marquee-card"><img src="images/truck-cooingcooing-open.jpg" alt="쿠잉쿠잉" loading="lazy"><div class="marquee-card-name">쿠잉쿠잉</div></div>
+        <div class="marquee-card"><img src="images/truck-chikingjoking-better.jpg" alt="CHIKING JOKING" loading="lazy"><div class="marquee-card-name">CHIKING JOKING</div></div>
+        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="FUME" loading="lazy"><div class="marquee-card-name">FUME</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
+        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="MAJOO" loading="lazy"><div class="marquee-card-name">MAJOO</div></div>
+        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="IT WAFFLE" loading="lazy"><div class="marquee-card-name">IT WAFFLE</div></div>
+        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃맛차" loading="lazy"><div class="marquee-card-name">꽃맛차</div></div>
+        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="야채곱창" loading="lazy"><div class="marquee-card-name">야채곱창</div></div>
+        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="MR.SOFTEE" loading="lazy"><div class="marquee-card-name">MR.SOFTEE</div></div>
+        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
+        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="GORILLA BARBEQUE" loading="lazy"><div class="marquee-card-name">GORILLA BARBEQUE</div></div>
+        <div class="marquee-card"><img src="images/truck-flow-crowd.jpg" alt="FLOW" loading="lazy"><div class="marquee-card-name">FLOW</div></div>
+        <div class="marquee-card"><img src="images/truck-redoven.jpg" alt="빨간화덕" loading="lazy"><div class="marquee-card-name">빨간화덕</div></div>
         <div class="marquee-card"><img src="images/truck-habshu-open.jpg" alt="HABS.HU" loading="lazy"><div class="marquee-card-name">HABS.HU</div></div>
-        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="오로라" loading="lazy"><div class="marquee-card-name">오로라</div></div>
-        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="달다란" loading="lazy"><div class="marquee-card-name">달다란</div></div>
-        <div class="marquee-card"><img src="images/truck-premium-skewer-open.jpg" alt="프리미엄 꼬치" loading="lazy"><div class="marquee-card-name">프리미엄 꼬치</div></div>
-        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
-        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="파라다이스" loading="lazy"><div class="marquee-card-name">파라다이스</div></div>
-        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="퓨메" loading="lazy"><div class="marquee-card-name">퓨메</div></div>
-        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃말차" loading="lazy"><div class="marquee-card-name">꽃말차</div></div>
+        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="DALDARAN" loading="lazy"><div class="marquee-card-name">DALDARAN</div></div>
         <div class="marquee-card"><img src="images/truck-remember-open.jpg" alt="리멤버" loading="lazy"><div class="marquee-card-name">리멤버</div></div>
+        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="Paradise Juice & Coffee" loading="lazy"><div class="marquee-card-name">Paradise Juice & Coffee</div></div>
+        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄 츄러스" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
+        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
+        <div class="marquee-card"><img src="images/truck-streetpizza.jpg" alt="스트릿피자" loading="lazy"><div class="marquee-card-name">스트릿피자</div></div>
+        <div class="marquee-card"><img src="images/truck-jungwoo.jpg" alt="정우 수제 닭꼬치" loading="lazy"><div class="marquee-card-name">정우 수제 닭꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-achuholic-open.jpg" alt="아츄홀릭" loading="lazy"><div class="marquee-card-name">아츄홀릭</div></div>
+        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="Cupbob Please!" loading="lazy"><div class="marquee-card-name">Cupbob Please!</div></div>
+        <div class="marquee-card"><img src="images/truck-wasabari-open.jpg" alt="푸드트럭하우스" loading="lazy"><div class="marquee-card-name">푸드트럭하우스</div></div>
+        <div class="marquee-card"><img src="images/truck-steakout.jpg" alt="STEAKOUT" loading="lazy"><div class="marquee-card-name">STEAKOUT</div></div>
+        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="AURORA TAKO" loading="lazy"><div class="marquee-card-name">AURORA TAKO</div></div>
+        <div class="marquee-card"><img src="images/truck-cooingcooing-open.jpg" alt="쿠잉쿠잉" loading="lazy"><div class="marquee-card-name">쿠잉쿠잉</div></div>
+        <div class="marquee-card"><img src="images/truck-chikingjoking-better.jpg" alt="CHIKING JOKING" loading="lazy"><div class="marquee-card-name">CHIKING JOKING</div></div>
+        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="FUME" loading="lazy"><div class="marquee-card-name">FUME</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
+        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="MAJOO" loading="lazy"><div class="marquee-card-name">MAJOO</div></div>
+        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="IT WAFFLE" loading="lazy"><div class="marquee-card-name">IT WAFFLE</div></div>
+        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃맛차" loading="lazy"><div class="marquee-card-name">꽃맛차</div></div>
+        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="야채곱창" loading="lazy"><div class="marquee-card-name">야채곱창</div></div>
+        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="MR.SOFTEE" loading="lazy"><div class="marquee-card-name">MR.SOFTEE</div></div>
+        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
       </div>
     </div>
-    <!-- ROW 2: 오른쪽으로 -->
     <div class="marquee-row">
       <div class="marquee-track reverse">
-        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
-        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
-        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="잇와플" loading="lazy"><div class="marquee-card-name">잇와플</div></div>
-        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="노마드테이스트" loading="lazy"><div class="marquee-card-name">노마드테이스트</div></div>
-        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="마주" loading="lazy"><div class="marquee-card-name">마주</div></div>
-        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
-        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="미스터 소프티" loading="lazy"><div class="marquee-card-name">미스터 소프티</div></div>
-        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="곱창이네" loading="lazy"><div class="marquee-card-name">곱창이네</div></div>
-        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="쿡컴퍼니" loading="lazy"><div class="marquee-card-name">쿡컴퍼니</div></div>
-        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="컵밥" loading="lazy"><div class="marquee-card-name">컵밥</div></div>
-        <!-- duplicate for seamless loop -->
-        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
-        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
-        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="잇와플" loading="lazy"><div class="marquee-card-name">잇와플</div></div>
-        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="노마드테이스트" loading="lazy"><div class="marquee-card-name">노마드테이스트</div></div>
-        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="마주" loading="lazy"><div class="marquee-card-name">마주</div></div>
-        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
-        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="미스터 소프티" loading="lazy"><div class="marquee-card-name">미스터 소프티</div></div>
-        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="곱창이네" loading="lazy"><div class="marquee-card-name">곱창이네</div></div>
-        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="쿡컴퍼니" loading="lazy"><div class="marquee-card-name">쿡컴퍼니</div></div>
-        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="컵밥" loading="lazy"><div class="marquee-card-name">컵밥</div></div>
+        <div class="marquee-card"><img src="images/trucks/truck-01/image-0.jpg" alt="푸드셀럽" loading="lazy"><div class="marquee-card-name">푸드셀럽</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoogangjeong-open.jpg" alt="새우강정" loading="lazy"><div class="marquee-card-name">새우강정</div></div>
+        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="미식방랑단 Nomad Taste" loading="lazy"><div class="marquee-card-name">미식방랑단 Nomad Taste</div></div>
+        <div class="marquee-card"><img src="images/truck-yeoptong-open.jpg" alt="엽통꼬치" loading="lazy"><div class="marquee-card-name">엽통꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="COOK & COMPANY" loading="lazy"><div class="marquee-card-name">COOK & COMPANY</div></div>
+        <div class="marquee-card"><img src="images/truck-kitchenon.jpg" alt="Kitchen ON" loading="lazy"><div class="marquee-card-name">Kitchen ON</div></div>
+        <div class="marquee-card"><img src="images/truck-juicecafe.jpg" alt="수박주스 카페" loading="lazy"><div class="marquee-card-name">수박주스 카페</div></div>
+        <div class="marquee-card"><img src="images/truck-sundaegopchang.jpg" alt="순대곱창볶음" loading="lazy"><div class="marquee-card-name">순대곱창볶음</div></div>
+        <div class="marquee-card"><img src="images/truck-kingfry.jpg" alt="King Fry Prince" loading="lazy"><div class="marquee-card-name">King Fry Prince</div></div>
+        <div class="marquee-card"><img src="images/truck-youngbbq.jpg" alt="Young BBQ" loading="lazy"><div class="marquee-card-name">Young BBQ</div></div>
+        <div class="marquee-card"><img src="images/truck-tasamshigan.jpg" alt="타삼시간" loading="lazy"><div class="marquee-card-name">타삼시간</div></div>
+        <div class="marquee-card"><img src="images/truck-ontheradio.jpg" alt="ON THE RADIO" loading="lazy"><div class="marquee-card-name">ON THE RADIO</div></div>
+        <div class="marquee-card"><img src="images/truck-sweetjin.jpg" alt="Sweet Jin" loading="lazy"><div class="marquee-card-name">Sweet Jin</div></div>
+        <div class="marquee-card"><img src="images/truck-tadaddi.jpg" alt="TADADDI" loading="lazy"><div class="marquee-card-name">TADADDI</div></div>
+        <div class="marquee-card"><img src="images/truck-lrito.jpg" alt="L.Rito" loading="lazy"><div class="marquee-card-name">L.Rito</div></div>
+        <div class="marquee-card"><img src="images/truck-shrimpgg.jpg" alt="Shrimp GG" loading="lazy"><div class="marquee-card-name">Shrimp GG</div></div>
+        <div class="marquee-card"><img src="images/truck-hank.jpg" alt="HANK STREET FOOD" loading="lazy"><div class="marquee-card-name">HANK STREET FOOD</div></div>
+        <div class="marquee-card"><img src="images/truck-starbig.jpg" alt="STARBIG" loading="lazy"><div class="marquee-card-name">STARBIG</div></div>
+        <div class="marquee-card"><img src="images/truck-geuni.jpg" alt="그니식당" loading="lazy"><div class="marquee-card-name">그니식당</div></div>
+        <div class="marquee-card"><img src="images/truck-loco.jpg" alt="LOCO TRUCK" loading="lazy"><div class="marquee-card-name">LOCO TRUCK</div></div>
+        <div class="marquee-card"><img src="images/truck-double88.jpg" alt="Double Eight 88" loading="lazy"><div class="marquee-card-name">Double Eight 88</div></div>
+        <div class="marquee-card"><img src="images/truck-woodwork.jpg" alt="Wood Work" loading="lazy"><div class="marquee-card-name">Wood Work</div></div>
+        <div class="marquee-card"><img src="images/truck-yellowoven.jpg" alt="YELLOW OVEN" loading="lazy"><div class="marquee-card-name">YELLOW OVEN</div></div>
+        <div class="marquee-card"><img src="images/truck-arawak.jpg" alt="ARAWAK" loading="lazy"><div class="marquee-card-name">ARAWAK</div></div>
+        <div class="marquee-card"><img src="images/truck-sunsal-open.jpg" alt="순살닭꼬치" loading="lazy"><div class="marquee-card-name">순살닭꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-sobbang-open.jpg" alt="SOBBANG 푸드트럭" loading="lazy"><div class="marquee-card-name">SOBBANG 푸드트럭</div></div>
+        <div class="marquee-card"><img src="images/trucks/truck-01/image-0.jpg" alt="푸드셀럽" loading="lazy"><div class="marquee-card-name">푸드셀럽</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoogangjeong-open.jpg" alt="새우강정" loading="lazy"><div class="marquee-card-name">새우강정</div></div>
+        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="미식방랑단 Nomad Taste" loading="lazy"><div class="marquee-card-name">미식방랑단 Nomad Taste</div></div>
+        <div class="marquee-card"><img src="images/truck-yeoptong-open.jpg" alt="엽통꼬치" loading="lazy"><div class="marquee-card-name">엽통꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="COOK & COMPANY" loading="lazy"><div class="marquee-card-name">COOK & COMPANY</div></div>
+        <div class="marquee-card"><img src="images/truck-kitchenon.jpg" alt="Kitchen ON" loading="lazy"><div class="marquee-card-name">Kitchen ON</div></div>
+        <div class="marquee-card"><img src="images/truck-juicecafe.jpg" alt="수박주스 카페" loading="lazy"><div class="marquee-card-name">수박주스 카페</div></div>
+        <div class="marquee-card"><img src="images/truck-sundaegopchang.jpg" alt="순대곱창볶음" loading="lazy"><div class="marquee-card-name">순대곱창볶음</div></div>
+        <div class="marquee-card"><img src="images/truck-kingfry.jpg" alt="King Fry Prince" loading="lazy"><div class="marquee-card-name">King Fry Prince</div></div>
+        <div class="marquee-card"><img src="images/truck-youngbbq.jpg" alt="Young BBQ" loading="lazy"><div class="marquee-card-name">Young BBQ</div></div>
+        <div class="marquee-card"><img src="images/truck-tasamshigan.jpg" alt="타삼시간" loading="lazy"><div class="marquee-card-name">타삼시간</div></div>
+        <div class="marquee-card"><img src="images/truck-ontheradio.jpg" alt="ON THE RADIO" loading="lazy"><div class="marquee-card-name">ON THE RADIO</div></div>
+        <div class="marquee-card"><img src="images/truck-sweetjin.jpg" alt="Sweet Jin" loading="lazy"><div class="marquee-card-name">Sweet Jin</div></div>
+        <div class="marquee-card"><img src="images/truck-tadaddi.jpg" alt="TADADDI" loading="lazy"><div class="marquee-card-name">TADADDI</div></div>
+        <div class="marquee-card"><img src="images/truck-lrito.jpg" alt="L.Rito" loading="lazy"><div class="marquee-card-name">L.Rito</div></div>
+        <div class="marquee-card"><img src="images/truck-shrimpgg.jpg" alt="Shrimp GG" loading="lazy"><div class="marquee-card-name">Shrimp GG</div></div>
+        <div class="marquee-card"><img src="images/truck-hank.jpg" alt="HANK STREET FOOD" loading="lazy"><div class="marquee-card-name">HANK STREET FOOD</div></div>
+        <div class="marquee-card"><img src="images/truck-starbig.jpg" alt="STARBIG" loading="lazy"><div class="marquee-card-name">STARBIG</div></div>
+        <div class="marquee-card"><img src="images/truck-geuni.jpg" alt="그니식당" loading="lazy"><div class="marquee-card-name">그니식당</div></div>
+        <div class="marquee-card"><img src="images/truck-loco.jpg" alt="LOCO TRUCK" loading="lazy"><div class="marquee-card-name">LOCO TRUCK</div></div>
+        <div class="marquee-card"><img src="images/truck-double88.jpg" alt="Double Eight 88" loading="lazy"><div class="marquee-card-name">Double Eight 88</div></div>
+        <div class="marquee-card"><img src="images/truck-woodwork.jpg" alt="Wood Work" loading="lazy"><div class="marquee-card-name">Wood Work</div></div>
+        <div class="marquee-card"><img src="images/truck-yellowoven.jpg" alt="YELLOW OVEN" loading="lazy"><div class="marquee-card-name">YELLOW OVEN</div></div>
+        <div class="marquee-card"><img src="images/truck-arawak.jpg" alt="ARAWAK" loading="lazy"><div class="marquee-card-name">ARAWAK</div></div>
+        <div class="marquee-card"><img src="images/truck-sunsal-open.jpg" alt="순살닭꼬치" loading="lazy"><div class="marquee-card-name">순살닭꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-sobbang-open.jpg" alt="SOBBANG 푸드트럭" loading="lazy"><div class="marquee-card-name">SOBBANG 푸드트럭</div></div>
       </div>
     </div>
   </div>
