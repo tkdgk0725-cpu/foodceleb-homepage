@@ -126,18 +126,43 @@ ul{list-style:none;}
 .svc-card p{font-size:14.5px; color:var(--sub); margin-bottom:18px;}
 @media(max-width:880px){.svc-grid{grid-template-columns:1fr;}}
 
-/* ===== MENU CATEGORIES ===== */
-.menu-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
-.menu-card{background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s ease; cursor:pointer;}
-.menu-card:hover{transform:translateY(-6px);}
-.menu-card-img{height:200px; overflow:hidden;}
-.menu-card-img img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-.menu-card:hover .menu-card-img img{transform:scale(1.08);}
-.menu-card-body{padding:20px; text-align:center;}
-.menu-card-body h3{font-size:18px; margin-bottom:6px;}
-.menu-card-body p{font-size:13.5px; color:var(--sub);}
-@media(max-width:880px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.menu-grid{grid-template-columns:1fr;}}
+/* ===== MENU MARQUEE ===== */
+.menu-marquee-wrap{
+  overflow:hidden; margin-top:8px;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
+}
+.menu-marquee-track{
+  display:flex; gap:16px; width:max-content;
+  animation:marquee-left 48s linear infinite;
+}
+.menu-marquee-wrap:hover .menu-marquee-track{animation-play-state:paused;}
+.menu-mcard{
+  position:relative; flex-shrink:0;
+  width:224px; height:168px; border-radius:14px; overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.10);
+}
+.menu-mcard img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+.menu-marquee-wrap:hover .menu-mcard img{transform:scale(1.05);}
+.menu-mcard-badge{
+  position:absolute; top:10px; left:10px;
+  background:rgba(0,0,0,0.52); backdrop-filter:blur(6px);
+  color:#fff; font-size:11px; font-weight:700;
+  padding:4px 10px; border-radius:999px; letter-spacing:.04em;
+}
+.menu-mcard-name{
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.72));
+  color:#fff; font-size:13px; font-weight:600;
+  padding:28px 12px 12px;
+  opacity:0; transform:translateY(4px);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.menu-mcard:hover .menu-mcard-name{opacity:1; transform:translateY(0);}
+@media(max-width:880px){
+  .menu-mcard{width:172px; height:130px;}
+  .menu-marquee-track{animation-duration:32s;}
+}
 
 /* ===== EVENT TYPES ===== */
 .events{background:var(--navy); color:#fff;}
@@ -604,25 +629,53 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
     <div class="section-title reveal">
       <span class="label">MENU</span>
       <h2>150여 가지 메뉴를 보유하고 있습니다</h2>
-      <p>식사부터 간식, 디저트, 음료까지 행사에 필요한 모든 메뉴를 제공합니다.</p>
+      <p>식사부터 간식, 그릴 요리, 음료까지 행사에 필요한 모든 메뉴가 끊임없이 지나갑니다.</p>
     </div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <div class="menu-card-img"><img src="images/menu-steak-shrimp.jpg" alt="식사 메뉴" loading="lazy"></div>
-        <div class="menu-card-body"><h3>🍖 식사</h3><p>스테이크, 새우, 보쌈, 팟타이, 김치찌개 등</p></div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-card-img"><img src="images/eulji-tteokbokki.jpg" alt="간식 메뉴" loading="lazy"></div>
-        <div class="menu-card-body"><h3>🍢 간식</h3><p>떡볶이, 닭강정, 닭꼬치, 감자튀김, 모둠튀김 등</p></div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-card-img"><img src="images/menu-spicy-skewer.jpg" alt="숯불 닭꼬치" loading="lazy"></div>
-        <div class="menu-card-body"><h3>🔥 그릴 &amp; 바비큐</h3><p>숯불 닭꼬치, 삼겹살, 스테이크, 소시지 등</p></div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-card-img"><img src="images/catering-champagne.jpg" alt="음료" loading="lazy"></div>
-        <div class="menu-card-body"><h3>🍸 음료 &amp; 칵테일</h3><p>커피, 에이드, 스무디, 수제 칵테일 등</p></div>
-      </div>
+  </div>
+  <div class="menu-marquee-wrap">
+    <div class="menu-marquee-track">
+      <!-- ─── 원본 20장 ─── -->
+      <div class="menu-mcard"><img src="images/menu-steak-shrimp.jpg" alt="스테이크 &amp; 새우" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">스테이크 &amp; 새우</div></div>
+      <div class="menu-mcard"><img src="images/eulji-tteokbokki.jpg" alt="을지 떡볶이" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">을지 떡볶이</div></div>
+      <div class="menu-mcard"><img src="images/food-chicken-skewer-grill.jpg" alt="숯불 닭꼬치" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">숯불 닭꼬치</div></div>
+      <div class="menu-mcard"><img src="images/food-bossam.jpg" alt="보쌈" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">보쌈</div></div>
+      <div class="menu-mcard"><img src="images/mong-dakgangjeong.jpg" alt="닭강정" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">닭강정</div></div>
+      <div class="menu-mcard"><img src="images/cooking-grill-skewers.jpg" alt="꼬치구이" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">꼬치구이</div></div>
+      <div class="menu-mcard"><img src="images/mong-padthai.jpg" alt="팟타이" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">팟타이</div></div>
+      <div class="menu-mcard"><img src="images/eulji-tempura.jpg" alt="모둠 튀김" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">모둠 튀김</div></div>
+      <div class="menu-mcard"><img src="images/food-grilled-pork.jpg" alt="삼겹살 구이" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">삼겹살 구이</div></div>
+      <div class="menu-mcard"><img src="images/food-noodle-lift.jpg" alt="라면" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">라면</div></div>
+      <div class="menu-mcard"><img src="images/food-cheese-balls.jpg" alt="치즈볼" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">치즈볼</div></div>
+      <div class="menu-mcard"><img src="images/mong-yakitori.jpg" alt="야키토리" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">야키토리</div></div>
+      <div class="menu-mcard"><img src="images/mong-steak.jpg" alt="스테이크" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">스테이크</div></div>
+      <div class="menu-mcard"><img src="images/food-chicken-skewer-pack.jpg" alt="닭꼬치 세트" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">닭꼬치 세트</div></div>
+      <div class="menu-mcard"><img src="images/catering-champagne.jpg" alt="칵테일 &amp; 음료" loading="lazy"><div class="menu-mcard-badge">🍸 음료</div><div class="menu-mcard-name">칵테일 &amp; 음료</div></div>
+      <div class="menu-mcard"><img src="images/food-bibim-noodle.jpg" alt="비빔국수" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">비빔국수</div></div>
+      <div class="menu-mcard"><img src="images/eulji-fries.jpg" alt="감자튀김" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">감자튀김</div></div>
+      <div class="menu-mcard"><img src="images/food-bbq-platter.jpg" alt="BBQ 플래터" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">BBQ 플래터</div></div>
+      <div class="menu-mcard"><img src="images/catering-buffet.jpg" alt="뷔페" loading="lazy"><div class="menu-mcard-badge">🍸 음료</div><div class="menu-mcard-name">뷔페 &amp; 음료</div></div>
+      <div class="menu-mcard"><img src="images/menu-all-plates.jpg" alt="다양한 메뉴" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">다양한 메뉴</div></div>
+      <!-- ─── 복제본 (seamless loop) ─── -->
+      <div class="menu-mcard"><img src="images/menu-steak-shrimp.jpg" alt="스테이크 &amp; 새우" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">스테이크 &amp; 새우</div></div>
+      <div class="menu-mcard"><img src="images/eulji-tteokbokki.jpg" alt="을지 떡볶이" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">을지 떡볶이</div></div>
+      <div class="menu-mcard"><img src="images/food-chicken-skewer-grill.jpg" alt="숯불 닭꼬치" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">숯불 닭꼬치</div></div>
+      <div class="menu-mcard"><img src="images/food-bossam.jpg" alt="보쌈" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">보쌈</div></div>
+      <div class="menu-mcard"><img src="images/mong-dakgangjeong.jpg" alt="닭강정" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">닭강정</div></div>
+      <div class="menu-mcard"><img src="images/cooking-grill-skewers.jpg" alt="꼬치구이" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">꼬치구이</div></div>
+      <div class="menu-mcard"><img src="images/mong-padthai.jpg" alt="팟타이" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">팟타이</div></div>
+      <div class="menu-mcard"><img src="images/eulji-tempura.jpg" alt="모둠 튀김" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">모둠 튀김</div></div>
+      <div class="menu-mcard"><img src="images/food-grilled-pork.jpg" alt="삼겹살 구이" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">삼겹살 구이</div></div>
+      <div class="menu-mcard"><img src="images/food-noodle-lift.jpg" alt="라면" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">라면</div></div>
+      <div class="menu-mcard"><img src="images/food-cheese-balls.jpg" alt="치즈볼" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">치즈볼</div></div>
+      <div class="menu-mcard"><img src="images/mong-yakitori.jpg" alt="야키토리" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">야키토리</div></div>
+      <div class="menu-mcard"><img src="images/mong-steak.jpg" alt="스테이크" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">스테이크</div></div>
+      <div class="menu-mcard"><img src="images/food-chicken-skewer-pack.jpg" alt="닭꼬치 세트" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">닭꼬치 세트</div></div>
+      <div class="menu-mcard"><img src="images/catering-champagne.jpg" alt="칵테일 &amp; 음료" loading="lazy"><div class="menu-mcard-badge">🍸 음료</div><div class="menu-mcard-name">칵테일 &amp; 음료</div></div>
+      <div class="menu-mcard"><img src="images/food-bibim-noodle.jpg" alt="비빔국수" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">비빔국수</div></div>
+      <div class="menu-mcard"><img src="images/eulji-fries.jpg" alt="감자튀김" loading="lazy"><div class="menu-mcard-badge">🍢 간식</div><div class="menu-mcard-name">감자튀김</div></div>
+      <div class="menu-mcard"><img src="images/food-bbq-platter.jpg" alt="BBQ 플래터" loading="lazy"><div class="menu-mcard-badge">🔥 그릴</div><div class="menu-mcard-name">BBQ 플래터</div></div>
+      <div class="menu-mcard"><img src="images/catering-buffet.jpg" alt="뷔페" loading="lazy"><div class="menu-mcard-badge">🍸 음료</div><div class="menu-mcard-name">뷔페 &amp; 음료</div></div>
+      <div class="menu-mcard"><img src="images/menu-all-plates.jpg" alt="다양한 메뉴" loading="lazy"><div class="menu-mcard-badge">🍖 식사</div><div class="menu-mcard-name">다양한 메뉴</div></div>
     </div>
   </div>
 </section>
