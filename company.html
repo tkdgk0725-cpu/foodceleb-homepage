@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회사소개 | Food Celebrity 푸드·셀럽</title>
+<meta name="description" content="푸드셀럽 대표 이상하의 창업 스토리, 방송·미디어 이력, 검증된 운영 역량을 소개합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  --white:#fff;
+  --bg:#F8F9FA;
+  --ink:#1A1A2E;
+  --sub:#555;
+  --orange:#FF6B35;
+  --orange-dark:#E55A2B;
+  --blue:#2563EB;
+  --navy:#16213E;
+  --green:#10B981;
+  --line:#E5E7EB;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
+  --radius:16px;
+  --container:1140px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif; color:var(--ink); line-height:1.7; background:var(--white);}
+img{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+.container{max-width:var(--container); margin:0 auto; padding:0 24px;}
+.section{padding:100px 0;}
+
+/* Animations */
+.reveal{opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.visible{opacity:1; transform:translateY(0);}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:none; transition:all .2s ease;}
+.btn:hover{transform:translateY(-2px);}
+.btn-orange{background:var(--orange); color:#fff; box-shadow:0 8px 24px rgba(255,107,53,0.35);}
+.btn-orange:hover{background:var(--orange-dark);}
+.btn-sm{padding:10px 22px; font-size:14px;}
+
+/* ===== NAV ===== */
+.nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.nav .container{display:flex; align-items:center; justify-content:space-between; height:72px;}
+.logo{font-weight:900; color:var(--orange); display:flex; align-items:center; gap:10px; line-height:1.2;}
+.logo-text{display:flex; flex-direction:column;}
+.logo-en{font-size:18px; font-family:'Space Grotesk',sans-serif; letter-spacing:-.01em;}
+.logo-ko{font-size:11px; font-weight:600; opacity:0.65; letter-spacing:.04em;}
+.logo svg{width:30px; height:20px;}
+.nav-links{display:flex; gap:28px; font-weight:500; font-size:15px; color:var(--sub);}
+.nav-links a:hover{color:var(--orange);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.nav-phone{font-weight:700; font-size:15px; color:var(--ink);}
+.nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+.nav-toggle span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0;}
+@media(max-width:880px){
+  .nav-links{position:absolute; top:72px; left:0; right:0; background:#fff; flex-direction:column; gap:0; border-bottom:1px solid var(--line); max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .nav-links.open{max-height:400px;}
+  .nav-links a{padding:16px 24px; display:block; border-top:1px solid var(--line);}
+  .nav-toggle{display:block;}
+  .nav-phone{display:none;}
+}
+
+/* ===== 회사소개 페이지 배너 ===== */
+.co-banner{
+  background:linear-gradient(135deg, var(--navy) 0%, #0d1829 100%);
+  color:#fff; padding:52px 0 44px;
+}
+.co-banner-inner{display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.co-banner h1{font-size:clamp(26px,4vw,40px); font-weight:900; line-height:1.2;}
+.co-banner p{font-size:14px; opacity:0.55; margin-top:8px; font-family:'Space Grotesk',sans-serif; letter-spacing:.04em;}
+.co-breadcrumb{font-size:13px; opacity:0.5; display:flex; align-items:center; gap:8px; padding-bottom:4px;}
+.co-breadcrumb a{transition:opacity .2s;}
+.co-breadcrumb a:hover{opacity:1; color:var(--orange);}
+.co-breadcrumb span{opacity:0.4;}
+
+/* ===== 행사 이력 (pill 태그) ===== */
+.event-history{margin-top:4px;}
+.event-category{margin-bottom:32px;}
+.event-category-title{font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); margin-bottom:14px;}
+.event-pills{display:flex; flex-wrap:wrap; gap:8px;}
+.event-pill{padding:7px 16px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); font-size:13.5px; color:var(--sub); font-weight:500; transition:border-color .2s, color .2s; white-space:nowrap;}
+.event-pill:hover{border-color:var(--orange); color:var(--orange);}
+.event-pill.more{border-style:dashed; color:var(--sub); opacity:0.55; cursor:default; font-size:12.5px;}
+.event-pill.more:hover{border-color:var(--line); color:var(--sub);}
+
+/* ===== 왜 푸드셀럽인가 (3카드) ===== */
+.why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px;}
+.why-card{padding:30px 24px; border-radius:var(--radius); border:1.5px solid var(--line); background:var(--white); text-align:center; transition:border-color .25s, box-shadow .25s;}
+.why-card:hover{border-color:var(--orange); box-shadow:0 6px 24px rgba(255,107,53,0.10);}
+.why-icon{font-size:32px; margin-bottom:14px; line-height:1;}
+.why-card h4{font-size:16px; font-weight:800; margin-bottom:10px; color:var(--ink);}
+.why-card p{font-size:14px; color:var(--sub); line-height:1.8;}
+@media(max-width:640px){.why-grid{grid-template-columns:1fr;}}
+
+/* ===== 타임라인 ===== */
+.timeline{display:flex; flex-direction:column; margin-top:4px;}
+.timeline-item{display:grid; grid-template-columns:78px 1fr auto; gap:0 28px; padding:22px 0; border-bottom:1px solid var(--line); align-items:start;}
+.timeline-item:last-child{border-bottom:none;}
+.timeline-date{font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:var(--orange); line-height:1.6; padding-top:2px; white-space:nowrap;}
+.timeline-title{font-size:15px; font-weight:700; color:var(--ink); margin-bottom:3px; line-height:1.5;}
+.timeline-desc{font-size:13.5px; color:var(--sub); line-height:1.7;}
+.timeline-photo{width:108px; height:76px; border-radius:10px; flex-shrink:0; background:var(--bg); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--sub); overflow:hidden;}
+.timeline-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+@media(max-width:640px){.timeline-item{grid-template-columns:60px 1fr; gap:0 16px;} .timeline-photo{display:none;}}
+
+/* ===== 특장점 카드 ===== */
+.strength-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px; max-width:660px;}
+.strength-card{padding:28px 26px; border-radius:var(--radius); border:1.5px solid var(--line); background:var(--white); transition:border-color .2s, box-shadow .2s;}
+.strength-card:hover{border-color:var(--orange); box-shadow:0 4px 20px rgba(255,107,53,0.09);}
+.strength-num{font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; color:var(--orange); letter-spacing:0.14em; margin-bottom:12px;}
+.strength-card h4{font-size:16px; font-weight:700; margin-bottom:10px; color:var(--ink); line-height:1.4;}
+.strength-card p{font-size:14px; color:var(--sub); line-height:1.85;}
+@media(max-width:640px){.strength-grid{grid-template-columns:1fr;}}
+
+/* ===== 회사소개 ABOUT ===== */
+.about-section{background:var(--white);}
+.about-layout{display:grid; grid-template-columns:210px 1fr; gap:72px; align-items:start;}
+.side-nav{position:sticky; top:96px;}
+.side-nav-category{font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--sub); padding-bottom:12px; margin-bottom:8px; border-bottom:1px solid var(--line);}
+.side-nav-list{display:flex; flex-direction:column; gap:2px;}
+.side-nav-btn{display:block; width:100%; text-align:left; padding:10px 14px; font-size:14px; font-family:inherit; color:var(--sub); background:none; border:none; border-radius:8px; cursor:pointer; transition:all .2s; line-height:1.5;}
+.side-nav-btn:hover{background:var(--bg); color:var(--ink);}
+.side-nav-btn.active{background:rgba(255,107,53,0.08); color:var(--orange); font-weight:700; border-left:3px solid var(--orange); padding-left:11px;}
+.about-tab{display:none;}
+.about-tab.active{display:block; animation:aboutFade .35s ease;}
+@keyframes aboutFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.section-heading{font-size:clamp(20px,2.8vw,28px); font-weight:900; line-height:1.3; padding-left:18px; border-left:4px solid var(--orange); margin-bottom:36px; color:var(--ink);}
+.section-subheading{font-size:16px; font-weight:700; line-height:1.4; padding-left:14px; border-left:3px solid var(--orange); margin:44px 0 18px; color:var(--ink);}
+.about-body{font-size:15.5px; line-height:2; color:var(--sub); max-width:640px;}
+.about-body p{margin-bottom:22px;}
+.about-body p:last-child{margin-bottom:0;}
+.about-signature{margin-top:48px; padding-top:28px; border-top:1px solid var(--line); font-size:15px; color:var(--sub); line-height:1.8;}
+.about-signature-name{font-size:20px; font-weight:900; color:var(--ink); margin-top:4px;}
+@media(max-width:880px){
+  .about-layout{grid-template-columns:1fr; gap:24px;}
+  .side-nav{position:static; display:flex; flex-wrap:wrap; gap:8px; padding-bottom:20px; border-bottom:1px solid var(--line);}
+  .side-nav-category{display:none;}
+  .side-nav-btn{padding:8px 16px; background:var(--bg); border-radius:999px; font-size:13px;}
+  .side-nav-btn.active{background:var(--orange); color:#fff; border-left:none; padding-left:16px;}
+}
+
+/* ===== 상단 네비 드롭다운 ===== */
+.nav-dropdown-wrap{position:relative;}
+.nav-dropdown-wrap > a{display:flex; align-items:center; gap:4px;}
+.nav-dropdown-wrap > a::after{content:"▾"; font-size:10px; opacity:0.6; margin-top:1px;}
+.nav-dropdown{display:none; position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%); background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.10); padding:8px; min-width:156px; z-index:200;}
+.nav-dropdown-wrap:hover .nav-dropdown{display:block;}
+.nav-dropdown a{display:block; padding:10px 16px; font-size:14px; border-radius:8px; color:var(--ink); font-weight:500; white-space:nowrap;}
+.nav-dropdown a:hover{background:var(--bg); color:var(--orange);}
+@media(max-width:880px){.nav-dropdown-wrap > a::after{display:none;}}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;}
+.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.1);}
+.foot-logo{font-weight:900; font-size:20px; color:#fff;}
+.foot-grid p{font-size:13px; margin-top:12px; line-height:1.9; opacity:0.7;}
+.foot-col h4{font-size:14px; color:#fff; margin-bottom:14px; font-weight:700;}
+.foot-col li{font-size:13px; margin-bottom:10px; opacity:0.7;}
+.foot-col li a:hover{opacity:1; color:var(--orange);}
+.foot-phone{font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--orange);}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:20px; font-size:12px; opacity:0.5; flex-wrap:wrap; gap:8px;}
+@media(max-width:880px){.foot-grid{grid-template-columns:1fr; gap:28px;}}
+
+/* ===== BACK TO TOP ===== */
+.back-top{position:fixed; bottom:24px; right:24px; z-index:40; width:46px; height:46px; border-radius:50%; background:var(--orange); color:#fff; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(255,107,53,0.4); display:flex; align-items:center; justify-content:center; font-size:18px; opacity:0; transition:opacity .3s ease;}
+.back-top.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 100 60"><rect x="6" y="20" width="34" height="26" rx="6" fill="#FF6B35"/><rect x="36" y="10" width="58" height="36" rx="8" fill="#FF6B35"/><rect x="14" y="26" width="16" height="12" rx="3" fill="#fff"/><circle cx="26" cy="48" r="8" fill="#1A1A2E"/><circle cx="78" cy="48" r="8" fill="#1A1A2E"/></svg>
+      <span class="logo-text">
+        <span class="logo-en">Food Celebrity</span>
+        <span class="logo-ko">푸드·셀럽</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <div class="nav-dropdown-wrap">
+        <a href="company.html">회사소개</a>
+        <div class="nav-dropdown">
+          <a href="company.html#ceo">대표 소개서</a>
+          <a href="company.html#intro">푸드셀럽 소개서</a>
+          <a href="company.html#features">푸드셀럽 특장점</a>
+        </div>
+      </div>
+      <a href="index.html#services">서비스 소개</a>
+      <a href="index.html#menu">메뉴 카테고리</a>
+      <a href="index.html#trucks">보유 트럭</a>
+      <a href="index.html#gallery">갤러리</a>
+      <a href="index.html#reviews">고객 후기</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-phone">📞 010-2829-0725</span>
+      <a href="index.html#quote" class="btn btn-orange btn-sm">간단 무료견적</a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- 페이지 배너 -->
+<div class="co-banner">
+  <div class="container">
+    <div class="co-banner-inner">
+      <div>
+        <h1>회사소개</h1>
+        <p>Food Celebrity · 푸드·셀럽</p>
+      </div>
+      <div class="co-breadcrumb">
+        <a href="index.html">홈</a>
+        <span>›</span>
+        <span>회사소개</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 회사소개 본문 -->
+<section class="section about-section" id="about">
+  <div class="container">
+    <div class="about-layout">
+
+      <!-- 좌측 사이드 네비 -->
+      <aside class="side-nav">
+        <div class="side-nav-category">회사소개</div>
+        <div class="side-nav-list">
+          <button class="side-nav-btn active" onclick="switchAboutTab('ceo')">대표 소개서</button>
+          <button class="side-nav-btn" onclick="switchAboutTab('intro')">푸드셀럽 소개서</button>
+          <button class="side-nav-btn" onclick="switchAboutTab('strengths')">푸드셀럽 특장점</button>
+        </div>
+      </aside>
+
+      <!-- 우측 본문 -->
+      <div class="about-content">
+
+        <!-- 대표 소개서 -->
+        <div class="about-tab active" id="about-ceo">
+          <h2 class="section-heading">대표 소개서</h2>
+          <div class="about-body">
+            <p>조리과학고등학교를 졸업하고 14년간 주방에서, 8년간 직접 매장을 운영하며 요식업의 다양한 현장을 경험했습니다.</p>
+            <p>그 시간 동안 다양한 업종에서 일하고 배우며, 저만의 가게를 차리고 싶다는 꿈을 키웠습니다. 첫 매장을 오픈한 이후 좋은 성과를 거두었고, 그렇게 모은 경험과 자본으로 매장을 하나둘 늘려왔습니다.</p>
+            <p>그러던 중 찾아온 변화 속에서, 다음 무대로 선택한 것이 푸드트럭이었습니다. 한 자리에 머무는 매장이 아니라, 사람이 모이는 곳이라면 어디든 찾아가 음식으로 그 순간을 채우는 일. 그것이 지금 푸드셀럽이 하고 있는 일입니다.</p>
+            <p>밤도깨비야시장을 비롯한 수많은 행사 현장에서, 그리고 SBS 생방송 투데이, 채널A 관찰카메라24, 에스콰이어, 올리브매거진 등 여러 매체를 통해 저희의 이야기를 전해왔습니다. 줄을 서서라도 찾아주시는 고객님들을 보며, 가야 할 길이 틀리지 않았다는 확신을 얻었습니다.</p>
+            <p>앞으로도 신뢰와 품질을 바탕으로, 찾아주시는 모든 행사에 특별한 한 끼를 전하겠습니다.</p>
+            <p>감사합니다.</p>
+          </div>
+          <div class="about-signature">
+            <div>푸드셀럽 대표</div>
+            <div class="about-signature-name">이상하</div>
+          </div>
+        </div>
+
+        <!-- 푸드셀럽 소개서 -->
+        <div class="about-tab" id="about-intro">
+          <h2 class="section-heading">푸드셀럽 소개서</h2>
+          <div class="about-body">
+            <p>푸드셀럽은 기업 행사, 축제, 군부대, 촬영 현장 등 다양한 공간에 어울리는 푸드트럭과 부스를 모집·연결하는 행사 전문 플랫폼입니다.</p>
+            <p>서울 밤도깨비야시장을 비롯한 수많은 현장에서 줄 서서 기다리는 손님들과 함께해왔으며, 그 과정은 여러 방송과 매체를 통해서도 소개되었습니다.</p>
+          </div>
+          <h3 class="section-subheading">방송 · 미디어 연혁</h3>
+          <img src="images/timeline-history.jpg" alt="방송·미디어 이력 요약" style="width:100%;max-width:640px;border-radius:12px;margin-bottom:20px;display:block;">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2017.08</div>
+              <div class="timeline-text">
+                <div class="timeline-title">SBS 생방송 투데이</div>
+                <div class="timeline-desc">'나는 셰프다, 푸드트럭 삼총사' 편</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/gorilla-tv-shooting.jpg" alt="SBS 생방송 투데이">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2017.10</div>
+              <div class="timeline-text">
+                <div class="timeline-title">채널A 관찰카메라24</div>
+                <div class="timeline-desc">'대박 푸드트럭 비밀 대공개' 편</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-channela.jpg" alt="채널A 관찰카메라24">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2018</div>
+              <div class="timeline-text">
+                <div class="timeline-title">에스콰이어코리아</div>
+                <div class="timeline-desc">미식가의 비밀식당 을지로 미팅룸 편</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-esquire.png" alt="에스콰이어코리아">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2019.02</div>
+              <div class="timeline-text">
+                <div class="timeline-title">올리브매거진</div>
+                <div class="timeline-desc">뉴트로 다이닝 특집</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-olive.png" alt="올리브매거진 2019년 2월호">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2019</div>
+              <div class="timeline-text">
+                <div class="timeline-title">외식하는 날</div>
+                <div class="timeline-desc">홍윤화·김민기 부부 방송 출연</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-eating-day.png" alt="외식하는 날">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2020</div>
+              <div class="timeline-text">
+                <div class="timeline-title">맛있는 녀석들</div>
+                <div class="timeline-desc">을지분식 촬영</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-tasty-guys.jpg" alt="맛있는 녀석들">
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2021</div>
+              <div class="timeline-text">
+                <div class="timeline-title">일주어터</div>
+                <div class="timeline-desc">을지분식 촬영</div>
+              </div>
+              <div class="timeline-photo">
+                <img src="images/timeline-ilju.png" alt="일주어터">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section-subheading">함께한 행사들</h3>
+          <div class="event-history">
+            <div class="event-category">
+              <div class="event-category-title">🎪 페스티벌</div>
+              <div class="event-pills">
+                <span class="event-pill">서울 밤도깨비 야시장</span>
+                <span class="event-pill">펜타포트 락 페스티벌</span>
+                <span class="event-pill">지산 락페스티벌</span>
+                <span class="event-pill">자라섬 포레스트 음악캠프</span>
+                <span class="event-pill">서울 국제 불꽃축제</span>
+                <span class="event-pill">한강 푸드트럭 100</span>
+                <span class="event-pill">킨텍스 월드 와인 박람회</span>
+                <span class="event-pill">동대문 패션위크</span>
+                <span class="event-pill">글로벌 푸드 페스티벌</span>
+                <span class="event-pill">투모로우랜드 코리아 페스티벌</span>
+                <span class="event-pill more">외 다수</span>
+              </div>
+            </div>
+            <div class="event-category">
+              <div class="event-category-title">🎓 대학교 축제</div>
+              <div class="event-pills">
+                <span class="event-pill">성균관대학교</span>
+                <span class="event-pill">고려대학교</span>
+                <span class="event-pill">건국대학교</span>
+                <span class="event-pill">세종대학교</span>
+                <span class="event-pill">경희대학교</span>
+                <span class="event-pill">동국대학교</span>
+                <span class="event-pill">단국대학교</span>
+                <span class="event-pill">연세대학교</span>
+                <span class="event-pill">숭실대학교</span>
+                <span class="event-pill">경기대학교</span>
+                <span class="event-pill more">외 다수</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 푸드셀럽 특장점 -->
+        <div class="about-tab" id="about-strengths">
+          <h2 class="section-heading">푸드셀럽 특장점</h2>
+
+          <h3 class="section-subheading">왜 푸드셀럽인가</h3>
+          <div class="why-grid">
+            <div class="why-card">
+              <div class="why-icon">🧼</div>
+              <h4>위생</h4>
+              <p>철저한 위생관리 시스템으로 행사 중 컴플레인을 최소화합니다.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">✨</div>
+              <h4>분위기</h4>
+              <p>화려한 트럭 디자인과 현장 퍼포먼스로 행사의 분위기를 살립니다.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">🎪</div>
+              <h4>다양성</h4>
+              <p>푸드트럭뿐 아니라 다양한 부스 구성으로 행사 콘텐츠를 풍성하게 만듭니다.</p>
+            </div>
+          </div>
+
+          <h3 class="section-subheading" style="margin-top:48px;">검증된 운영 역량</h3>
+          <div class="strength-grid">
+            <div class="strength-card">
+              <div class="strength-num">01</div>
+              <h4>검증된 현장 경험</h4>
+              <p>서울 밤도깨비야시장을 비롯한 수많은 행사 현장에서 쌓아온 운영 노하우로, 어떤 규모의 행사에도 안정적으로 대응합니다.</p>
+            </div>
+            <div class="strength-card">
+              <div class="strength-num">02</div>
+              <h4>다양한 트럭 라인업</h4>
+              <p>빙수, 음료, 분식, 구이, 베이커리 등 행사 성격에 맞춰 선택할 수 있는 다양한 카테고리의 트럭을 보유하고 있습니다.</p>
+            </div>
+            <div class="strength-card">
+              <div class="strength-num">03</div>
+              <h4>체계적인 행사 운영 프로세스</h4>
+              <p>행사 접수부터 트럭·부스 모집, 선정, 입차 일정 조율, 현장 운영까지 원스톱으로 관리합니다.</p>
+            </div>
+            <div class="strength-card">
+              <div class="strength-num">04</div>
+              <h4>방송·매체로 검증된 신뢰도</h4>
+              <p>SBS, 채널A 등 다수 방송과 잡지 매체에 소개되며 품질과 서비스를 인정받았습니다.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /about-content -->
+    </div><!-- /about-layout -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Food Celebrity <span style="font-size:14px;opacity:0.65;font-weight:600;letter-spacing:.04em;">푸드·셀럽</span></div>
+        <p>설립일 2016년 10월 12일 · 대표 이상하<br>사업자등록번호 750-02-02392<br>서울특별시 중구 을지로 281, DDP 팔거리광장 1층(을지로7가)<br>업태 음식점업 · 종목 푸드트럭</p>
+      </div>
+      <div class="foot-col">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="index.html#services">서비스 소개</a></li>
+          <li><a href="index.html#menu">메뉴 카테고리</a></li>
+          <li><a href="index.html#trucks">보유 트럭</a></li>
+          <li><a href="index.html#gallery">갤러리</a></li>
+          <li><a href="index.html#reviews">고객 후기</a></li>
+          <li><a href="company.html">회사소개</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>문의</h4>
+        <div class="foot-phone">010-2829-0725</div>
+        <ul style="margin-top:14px;">
+          <li>이메일 ejbs2022@naver.com</li>
+          <li>상담시간 09:00–18:00</li>
+          <li>카카오톡 상담 가능</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; FoodCeleb. ALL RIGHTS RESERVED.</span>
+      <span>이용약관 · 개인정보처리방침</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="맨 위로">↑</button>
+
+<script>
+// Nav toggle
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>{navLinks.classList.toggle('open');});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// URL hash ↔ tab 매핑
+const HASH_TO_TAB = { ceo:'ceo', intro:'intro', features:'strengths' };
+const TAB_TO_HASH = { ceo:'ceo', intro:'intro', strengths:'features' };
+
+function switchAboutTab(tab) {
+  document.querySelectorAll('.about-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.side-nav-btn').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('about-' + tab);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.side-nav-btn').forEach(el => {
+    if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'" + tab + "'"))
+      el.classList.add('active');
+  });
+  // URL hash 갱신 (페이지 스크롤 없이)
+  history.replaceState(null, '', '#' + (TAB_TO_HASH[tab] || tab));
+}
+
+// 페이지 진입 시 hash로 탭 자동 활성화
+(function(){
+  const hash = location.hash.replace('#', '');
+  if (HASH_TO_TAB[hash]) switchAboutTab(HASH_TO_TAB[hash]);
+})();
+
+// Reveal
+const revObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}}),{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Back to top
+const bt=document.getElementById('backTop');
+window.addEventListener('scroll',()=>bt.classList.toggle('show',scrollY>500));
+bt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
