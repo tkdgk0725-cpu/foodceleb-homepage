@@ -132,24 +132,48 @@ ul{list-style:none;}
 @media(max-width:880px){.evt-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:560px){.evt-grid{grid-template-columns:repeat(2,1fr);}}
 
-/* ===== TRUCKS ===== */
-.truck-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-.truck-hidden{display:none;}
-.truck-hidden.show{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-.truck-toggle{display:flex; justify-content:center; margin-top:32px;}
-.truck-toggle .btn{gap:6px; font-size:15px;}
-.truck-card{background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s ease;}
-.truck-card:hover{transform:translateY(-6px);}
-.truck-card-img{height:220px; overflow:hidden; position:relative;}
-.truck-card-img img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-.truck-card:hover .truck-card-img img{transform:scale(1.06);}
-.truck-badge{position:absolute; top:14px; left:14px; background:var(--orange); color:#fff; padding:5px 12px; border-radius:999px; font-size:12px; font-weight:700;}
-.truck-card-body{padding:22px;}
-.truck-card-body h3{font-size:19px; margin-bottom:8px;}
-.truck-card-body p{font-size:14px; color:var(--sub); margin-bottom:14px;}
-.truck-tags{display:flex; gap:6px; flex-wrap:wrap;}
-.truck-tags span{background:var(--bg); padding:4px 10px; border-radius:8px; font-size:12px; font-weight:600; color:var(--sub);}
-@media(max-width:880px){.truck-grid{grid-template-columns:1fr;}}
+/* ===== TRUCKS MARQUEE ===== */
+#trucks{padding:100px 0 80px; overflow:hidden;}
+#trucks .container{padding-bottom:0;}
+.marquee-wrap{display:flex; flex-direction:column; gap:16px; margin-top:8px;}
+.marquee-row{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+}
+.marquee-track{
+  display:flex; gap:16px; width:max-content;
+  animation:marquee-left 55s linear infinite;
+}
+.marquee-track.reverse{animation:marquee-right 55s linear infinite;}
+.marquee-row:hover .marquee-track{animation-play-state:paused;}
+@keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.marquee-card{
+  position:relative; flex-shrink:0;
+  width:260px; height:185px;
+  border-radius:14px; overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.10);
+}
+.marquee-card img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .5s ease;
+}
+.marquee-row:hover .marquee-card img{transform:scale(1.04);}
+.marquee-card-name{
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.75));
+  color:#fff; font-size:13px; font-weight:700;
+  padding:28px 12px 12px;
+  opacity:0; transform:translateY(4px);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.marquee-card:hover .marquee-card-name{opacity:1; transform:translateY(0);}
+/* 모바일: 애니메이션 그대로 유지 (touch 기기) */
+@media(max-width:880px){
+  .marquee-card{width:200px; height:145px;}
+  .marquee-track{animation-duration:35s;}
+}
 
 /* ===== GALLERY ===== */
 .gallery{background:var(--bg);}
@@ -366,23 +390,65 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
 
 <!-- OUR TRUCKS -->
 <!-- TRUCKS: 자동 생성 (truck-portfolio-generator build-homepage.js) -->
-<section class="section" id="trucks">
+<section id="trucks">
   <div class="container">
     <div class="section-title reveal">
       <span class="label">OUR TRUCKS</span>
       <h2>검증된 푸드트럭 네트워크</h2>
       <p>각 분야 최고의 푸드트럭을 직접 운영하며, 믿을 수 있는 파트너 트럭들과 함께합니다.</p>
     </div>
-    <div class="truck-grid">
-      <div class="truck-card reveal">
-        <div class="truck-card-img">
-          <img src="images/trucks/truck-01/image-0.jpg" alt="푸드셀럽" loading="lazy">
-          <span class="truck-badge">꼬치.구이</span>
-        </div>
-        <div class="truck-card-body">
-          <h3>푸드셀럽</h3>
-          <div class="truck-tags"><span>트러플소금</span><span>데리마요야끼</span><span>핫바베큐</span></div>
-        </div>
+  </div>
+  <div class="marquee-wrap">
+    <!-- ROW 1: 왼쪽으로 -->
+    <div class="marquee-row">
+      <div class="marquee-track">
+        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="고릴라 바비큐" loading="lazy"><div class="marquee-card-name">고릴라 바비큐</div></div>
+        <div class="marquee-card"><img src="images/truck-habshu-open.jpg" alt="HABS.HU" loading="lazy"><div class="marquee-card-name">HABS.HU</div></div>
+        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="오로라" loading="lazy"><div class="marquee-card-name">오로라</div></div>
+        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="달다란" loading="lazy"><div class="marquee-card-name">달다란</div></div>
+        <div class="marquee-card"><img src="images/truck-premium-skewer-open.jpg" alt="프리미엄 꼬치" loading="lazy"><div class="marquee-card-name">프리미엄 꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
+        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="파라다이스" loading="lazy"><div class="marquee-card-name">파라다이스</div></div>
+        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="퓨메" loading="lazy"><div class="marquee-card-name">퓨메</div></div>
+        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃말차" loading="lazy"><div class="marquee-card-name">꽃말차</div></div>
+        <div class="marquee-card"><img src="images/truck-remember-open.jpg" alt="리멤버" loading="lazy"><div class="marquee-card-name">리멤버</div></div>
+        <!-- duplicate for seamless loop -->
+        <div class="marquee-card"><img src="images/truck-gorilla-night-open.jpg" alt="고릴라 바비큐" loading="lazy"><div class="marquee-card-name">고릴라 바비큐</div></div>
+        <div class="marquee-card"><img src="images/truck-habshu-open.jpg" alt="HABS.HU" loading="lazy"><div class="marquee-card-name">HABS.HU</div></div>
+        <div class="marquee-card"><img src="images/truck-aurora-open.jpg" alt="오로라" loading="lazy"><div class="marquee-card-name">오로라</div></div>
+        <div class="marquee-card"><img src="images/truck-daldaran-open.jpg" alt="달다란" loading="lazy"><div class="marquee-card-name">달다란</div></div>
+        <div class="marquee-card"><img src="images/truck-premium-skewer-open.jpg" alt="프리미엄 꼬치" loading="lazy"><div class="marquee-card-name">프리미엄 꼬치</div></div>
+        <div class="marquee-card"><img src="images/truck-monster-open.jpg" alt="몬스터 닭강정" loading="lazy"><div class="marquee-card-name">몬스터 닭강정</div></div>
+        <div class="marquee-card"><img src="images/truck-paradise-open.jpg" alt="파라다이스" loading="lazy"><div class="marquee-card-name">파라다이스</div></div>
+        <div class="marquee-card"><img src="images/truck-fume-open.jpg" alt="퓨메" loading="lazy"><div class="marquee-card-name">퓨메</div></div>
+        <div class="marquee-card"><img src="images/truck-kkotmatcha-open.jpg" alt="꽃말차" loading="lazy"><div class="marquee-card-name">꽃말차</div></div>
+        <div class="marquee-card"><img src="images/truck-remember-open.jpg" alt="리멤버" loading="lazy"><div class="marquee-card-name">리멤버</div></div>
+      </div>
+    </div>
+    <!-- ROW 2: 오른쪽으로 -->
+    <div class="marquee-row">
+      <div class="marquee-track reverse">
+        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
+        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
+        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="잇와플" loading="lazy"><div class="marquee-card-name">잇와플</div></div>
+        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="노마드테이스트" loading="lazy"><div class="marquee-card-name">노마드테이스트</div></div>
+        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="마주" loading="lazy"><div class="marquee-card-name">마주</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
+        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="미스터 소프티" loading="lazy"><div class="marquee-card-name">미스터 소프티</div></div>
+        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="곱창이네" loading="lazy"><div class="marquee-card-name">곱창이네</div></div>
+        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="쿡컴퍼니" loading="lazy"><div class="marquee-card-name">쿡컴퍼니</div></div>
+        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="컵밥" loading="lazy"><div class="marquee-card-name">컵밥</div></div>
+        <!-- duplicate for seamless loop -->
+        <div class="marquee-card"><img src="images/truck-mychu-open.jpg" alt="마이츄" loading="lazy"><div class="marquee-card-name">마이츄 츄러스</div></div>
+        <div class="marquee-card"><img src="images/truck-gangjeongine-open.jpg" alt="강정이네" loading="lazy"><div class="marquee-card-name">강정이네</div></div>
+        <div class="marquee-card"><img src="images/truck-itwaffle-open.jpg" alt="잇와플" loading="lazy"><div class="marquee-card-name">잇와플</div></div>
+        <div class="marquee-card"><img src="images/truck-nomadtaste-open.jpg" alt="노마드테이스트" loading="lazy"><div class="marquee-card-name">노마드테이스트</div></div>
+        <div class="marquee-card"><img src="images/truck-majoo-open.jpg" alt="마주" loading="lazy"><div class="marquee-card-name">마주</div></div>
+        <div class="marquee-card"><img src="images/truck-saewoodang-open.jpg" alt="새우당" loading="lazy"><div class="marquee-card-name">새우당</div></div>
+        <div class="marquee-card"><img src="images/truck-mrsoftee-open.jpg" alt="미스터 소프티" loading="lazy"><div class="marquee-card-name">미스터 소프티</div></div>
+        <div class="marquee-card"><img src="images/truck-gopchang-open.jpg" alt="곱창이네" loading="lazy"><div class="marquee-card-name">곱창이네</div></div>
+        <div class="marquee-card"><img src="images/truck-cookcompany-open.jpg" alt="쿡컴퍼니" loading="lazy"><div class="marquee-card-name">쿡컴퍼니</div></div>
+        <div class="marquee-card"><img src="images/truck-cupbob-open.jpg" alt="컵밥" loading="lazy"><div class="marquee-card-name">컵밥</div></div>
       </div>
     </div>
   </div>
