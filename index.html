@@ -260,6 +260,136 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
 /* ===== BACK TO TOP ===== */
 .back-top{position:fixed; bottom:24px; right:24px; z-index:40; width:46px; height:46px; border-radius:50%; background:var(--orange); color:#fff; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(255,107,53,0.4); display:flex; align-items:center; justify-content:center; font-size:18px; opacity:0; transition:opacity .3s ease;}
 .back-top.show{opacity:1;}
+
+/* ===== 회사소개 (ABOUT) ===== */
+.about-section{background:var(--white); border-top:1px solid var(--line);}
+.about-layout{display:grid; grid-template-columns:210px 1fr; gap:72px; align-items:start;}
+
+/* 좌측 사이드 네비 */
+.side-nav{position:sticky; top:96px;}
+.side-nav-category{
+  font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--sub); padding-bottom:12px; margin-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+.side-nav-list{display:flex; flex-direction:column; gap:2px;}
+.side-nav-btn{
+  display:block; width:100%; text-align:left;
+  padding:10px 14px; font-size:14px; font-family:inherit;
+  color:var(--sub); background:none; border:none;
+  border-radius:8px; cursor:pointer; transition:all .2s;
+  line-height:1.5;
+}
+.side-nav-btn:hover{background:var(--bg); color:var(--ink);}
+.side-nav-btn.active{
+  background:rgba(255,107,53,0.08);
+  color:var(--orange); font-weight:700;
+  border-left:3px solid var(--orange);
+  padding-left:11px;
+}
+
+/* 우측 본문 탭 */
+.about-tab{display:none;}
+.about-tab.active{display:block; animation:aboutFade .35s ease;}
+@keyframes aboutFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* 제목에 주황 세로 바 */
+.section-heading{
+  font-size:clamp(20px,2.8vw,28px); font-weight:900; line-height:1.3;
+  padding-left:18px; border-left:4px solid var(--orange);
+  margin-bottom:36px; color:var(--ink);
+}
+.section-subheading{
+  font-size:16px; font-weight:700; line-height:1.4;
+  padding-left:14px; border-left:3px solid var(--orange);
+  margin:44px 0 18px; color:var(--ink);
+}
+
+/* 본문 텍스트 */
+.about-body{font-size:15.5px; line-height:2; color:var(--sub); max-width:640px;}
+.about-body p{margin-bottom:22px;}
+.about-body p:last-child{margin-bottom:0;}
+
+/* 서명 */
+.about-signature{
+  margin-top:48px; padding-top:28px; border-top:1px solid var(--line);
+  font-size:15px; color:var(--sub); line-height:1.8;
+}
+.about-signature-name{font-size:20px; font-weight:900; color:var(--ink); margin-top:4px;}
+
+/* 방송·미디어 갤러리 */
+.media-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:4px;}
+.media-item{
+  border-radius:var(--radius); overflow:hidden;
+  aspect-ratio:4/3; position:relative;
+  background:var(--bg); border:1px solid var(--line);
+}
+.media-item img{width:100%; height:100%; object-fit:cover; display:block;}
+.media-placeholder{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+  color:var(--sub); font-size:13px; text-align:center; padding:12px;
+}
+.media-placeholder-icon{font-size:30px; line-height:1;}
+.media-caption{
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.62));
+  color:#fff; font-size:12px; font-weight:700;
+  padding:20px 12px 12px;
+}
+
+/* 채용 카드 */
+.job-cards{display:flex; flex-direction:column; gap:16px; margin-top:8px; max-width:640px;}
+.job-card{
+  background:var(--bg); border-radius:var(--radius);
+  padding:28px 32px; border:1.5px solid var(--line);
+  transition:border-color .2s, box-shadow .2s;
+}
+.job-card:hover{border-color:var(--orange); box-shadow:0 4px 16px rgba(255,107,53,0.10);}
+.job-badge{
+  display:inline-block; background:rgba(255,107,53,0.1); color:var(--orange);
+  font-size:11px; font-weight:700; padding:3px 10px;
+  border-radius:999px; letter-spacing:.06em; margin-bottom:12px;
+}
+.job-card h4{font-size:17px; font-weight:700; margin-bottom:8px; color:var(--ink);}
+.job-card p{font-size:14px; color:var(--sub); line-height:1.8;}
+
+/* 상단 네비 드롭다운 (회사소개) */
+.nav-dropdown-wrap{position:relative;}
+.nav-dropdown-wrap > a{display:flex; align-items:center; gap:4px;}
+.nav-dropdown-wrap > a::after{content:"▾"; font-size:10px; opacity:0.6; margin-top:1px;}
+.nav-dropdown{
+  display:none; position:absolute; top:calc(100% + 12px); left:50%;
+  transform:translateX(-50%);
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.10); padding:8px; min-width:156px; z-index:200;
+}
+.nav-dropdown-wrap:hover .nav-dropdown{display:block;}
+.nav-dropdown a{
+  display:block; padding:10px 16px; font-size:14px; border-radius:8px;
+  color:var(--ink); font-weight:500; white-space:nowrap;
+}
+.nav-dropdown a:hover{background:var(--bg); color:var(--orange);}
+
+/* 모바일 */
+@media(max-width:880px){
+  .about-layout{grid-template-columns:1fr; gap:24px;}
+  .side-nav{
+    position:static; display:flex; flex-wrap:wrap; gap:8px;
+    padding-bottom:20px; border-bottom:1px solid var(--line);
+  }
+  .side-nav-category{display:none;}
+  .side-nav-btn{
+    padding:8px 16px; background:var(--bg);
+    border-radius:999px; font-size:13px;
+  }
+  .side-nav-btn.active{
+    background:var(--orange); color:#fff;
+    border-left:none; padding-left:16px;
+  }
+  .media-gallery{grid-template-columns:repeat(2,1fr);}
+  .nav-dropdown-wrap > a::after{display:none;}
+}
 </style>
 </head>
 <body>
@@ -277,6 +407,14 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
       <a href="#trucks">보유 트럭</a>
       <a href="#gallery">갤러리</a>
       <a href="#reviews">고객 후기</a>
+      <div class="nav-dropdown-wrap">
+        <a href="#about">회사소개</a>
+        <div class="nav-dropdown">
+          <a href="#about" onclick="switchAboutTab('ceo');return true;">CEO 인사말</a>
+          <a href="#about" onclick="switchAboutTab('store');return true;">매장 소개</a>
+          <a href="#about" onclick="switchAboutTab('people');return true;">함께하는 사람들</a>
+        </div>
+      </div>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
@@ -651,6 +789,128 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
   </div>
 </section>
 
+<!-- ABOUT 회사소개 -->
+<section class="section about-section" id="about">
+  <div class="container">
+    <div class="about-layout">
+
+      <!-- 좌측 사이드 네비 -->
+      <aside class="side-nav">
+        <div class="side-nav-category">회사소개</div>
+        <div class="side-nav-list">
+          <button class="side-nav-btn active" onclick="switchAboutTab('ceo')">CEO 인사말</button>
+          <button class="side-nav-btn" onclick="switchAboutTab('store')">매장 소개</button>
+          <button class="side-nav-btn" onclick="switchAboutTab('people')">함께하는 사람들</button>
+        </div>
+      </aside>
+
+      <!-- 우측 본문 -->
+      <div class="about-content">
+
+        <!-- CEO 인사말 -->
+        <div class="about-tab active" id="about-ceo">
+          <h2 class="section-heading">CEO 인사말</h2>
+          <!-- 텍스트 내용 추후 입력 -->
+          <div class="about-body">
+            <p><!-- 인사말 첫 번째 문단 추후 입력 --></p>
+            <p><!-- 인사말 두 번째 문단 추후 입력 --></p>
+            <p><!-- 인사말 세 번째 문단 추후 입력 --></p>
+          </div>
+          <div class="about-signature">
+            <div>푸드셀럽 대표</div>
+            <div class="about-signature-name">이상하</div>
+          </div>
+        </div>
+
+        <!-- 매장 소개 -->
+        <div class="about-tab" id="about-store">
+          <h2 class="section-heading">매장 소개</h2>
+          <!-- 텍스트 내용 추후 입력 -->
+          <div class="about-body">
+            <p><!-- 매장 소개 본문 첫 번째 문단 추후 입력 --></p>
+            <p><!-- 매장 소개 본문 두 번째 문단 추후 입력 --></p>
+          </div>
+          <h3 class="section-subheading">방송 · 미디어 출연</h3>
+          <div class="media-gallery">
+            <div class="media-item">
+              <img src="images/gorilla-tv-shooting.jpg" alt="생방송 투데이 촬영">
+              <div class="media-caption">생방송 투데이</div>
+            </div>
+            <div class="media-item">
+              <!-- 사진 추후 입력 -->
+              <div class="media-placeholder">
+                <div class="media-placeholder-icon">📺</div>
+                <span>방송 출연 사진<br>추후 입력</span>
+              </div>
+              <div class="media-caption">방송 출연</div>
+            </div>
+            <div class="media-item">
+              <!-- 사진 추후 입력 -->
+              <div class="media-placeholder">
+                <div class="media-placeholder-icon">📰</div>
+                <span>잡지·신문 게재<br>추후 입력</span>
+              </div>
+              <div class="media-caption">잡지 · 신문</div>
+            </div>
+            <div class="media-item">
+              <!-- 사진 추후 입력 -->
+              <div class="media-placeholder">
+                <div class="media-placeholder-icon">📸</div>
+                <span>행사 현장 사진<br>추후 입력</span>
+              </div>
+              <div class="media-caption">행사 현장</div>
+            </div>
+            <div class="media-item">
+              <!-- 사진 추후 입력 -->
+              <div class="media-placeholder">
+                <div class="media-placeholder-icon">📸</div>
+                <span>행사 현장 사진<br>추후 입력</span>
+              </div>
+              <div class="media-caption">행사 현장</div>
+            </div>
+            <div class="media-item">
+              <!-- 사진 추후 입력 -->
+              <div class="media-placeholder">
+                <div class="media-placeholder-icon">📸</div>
+                <span>행사 현장 사진<br>추후 입력</span>
+              </div>
+              <div class="media-caption">행사 현장</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 함께하는 사람들 -->
+        <div class="about-tab" id="about-people">
+          <h2 class="section-heading">함께하는 사람들</h2>
+          <!-- 텍스트 내용 추후 입력 -->
+          <div class="about-body">
+            <p><!-- 채용 소개 본문 추후 입력 --></p>
+          </div>
+          <h3 class="section-subheading">채용 중인 포지션</h3>
+          <div class="job-cards">
+            <div class="job-card">
+              <div class="job-badge">모집 중</div>
+              <!-- 직무명·설명 추후 입력 -->
+              <h4><!-- 직무명 추후 입력 --></h4>
+              <p><!-- 직무 설명 및 우대사항 추후 입력 --></p>
+            </div>
+            <div class="job-card">
+              <div class="job-badge">모집 중</div>
+              <!-- 직무명·설명 추후 입력 -->
+              <h4><!-- 직무명 추후 입력 --></h4>
+              <p><!-- 직무 설명 및 우대사항 추후 입력 --></p>
+            </div>
+          </div>
+          <div style="margin-top:32px; padding:20px 24px; background:rgba(255,107,53,0.06); border-radius:12px; border:1px solid rgba(255,107,53,0.15); font-size:14px; color:var(--sub); line-height:1.8;">
+            📩 지원 및 문의: <strong style="color:var(--ink);">ejbs2022@naver.com</strong>
+          </div>
+        </div>
+
+      </div><!-- /about-content -->
+    </div><!-- /about-layout -->
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section" id="faq">
   <div class="container">
@@ -693,6 +953,7 @@ footer{background:var(--navy); color:rgba(255,255,255,0.8); padding:56px 0 24px;
           <li><a href="#trucks">보유 트럭</a></li>
           <li><a href="#gallery">갤러리</a></li>
           <li><a href="#reviews">고객 후기</a></li>
+          <li><a href="#about">회사소개</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -745,6 +1006,18 @@ function toggleTrucks(){
     btn.textContent='접기 −';
     more.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
   }
+}
+
+// About tab switching
+function switchAboutTab(tab) {
+  document.querySelectorAll('.about-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.side-nav-btn').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('about-' + tab);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.side-nav-btn').forEach(el => {
+    if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'" + tab + "'"))
+      el.classList.add('active');
+  });
 }
 
 // Back to top
